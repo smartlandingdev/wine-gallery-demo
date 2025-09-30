@@ -6,7 +6,7 @@ export const translations: Record<string, Translations> = {
       title: "Premium Wine Collection",
       subtitle:
         "Discover the finest selection of wines from around the world, carefully curated for the discerning palate.",
-      cta: "Learn More",
+      cta: "Discover Your Perfect Bottle",
     },
     features: {
       title: "Why Choose Our Wines",
@@ -151,7 +151,7 @@ export const translations: Record<string, Translations> = {
     },
     footer: {
       description:
-        "Your trusted source for premium wines from around the world. Discover, taste, and celebrate with exceptional bottles curated by our expert team.",
+        "For over 25 years, Wine Gallery has been the premier destination for discerning wine enthusiasts. We offer an exceptional collection of rare and premium wines from the world's finest vineyards.",
       quickLinks: "Quick Links",
       policies: "Policies",
       contactInfo: "Contact Info",
@@ -163,9 +163,9 @@ export const translations: Record<string, Translations> = {
       terms: "Terms of Service",
       shipping: "Shipping Info",
       returns: "Returns",
-      address: "123 Wine Street, Downtown, City 12345",
+      address: "123 Premium Wine Avenue, Downtown District",
       hours: "Mon-Sat: 10AM-8PM | Sun: 12PM-6PM",
-      copyright: "© 2024 VineStore. All rights reserved.",
+      copyright: "© 2024 Wine Gallery. All rights reserved.",
       secure: "Secure Shopping",
     },
     contact: {
@@ -188,7 +188,7 @@ export const translations: Record<string, Translations> = {
       title: "Coleção Premium de Vinhos",
       subtitle:
         "Descubra a mais fina seleção de vinhos de todo o mundo, cuidadosamente escolhidos para o paladar exigente.",
-      cta: "Saiba Mais",
+      cta: "Descubra Sua Garrafa Perfeita",
     },
     features: {
       title: "Por Que Escolher Nossos Vinhos",
@@ -336,7 +336,7 @@ export const translations: Record<string, Translations> = {
     },
     footer: {
       description:
-        "Sua fonte confiável para vinhos premium de todo o mundo. Descubra, deguste e celebre com garrafas excepcionais curadas por nossa equipe especializada.",
+        "Há mais de 25 anos, a Wine Gallery é o destino premium para apreciadores exigentes de vinhos. Oferecemos uma coleção excepcional de vinhos raros e premium das melhores vinícolas do mundo.",
       quickLinks: "Links Rápidos",
       policies: "Políticas",
       contactInfo: "Informações de Contato",
@@ -348,9 +348,9 @@ export const translations: Record<string, Translations> = {
       terms: "Termos de Serviço",
       shipping: "Informações de Envio",
       returns: "Devoluções",
-      address: "Rua dos Vinhos, 123, Centro, Cidade 12345",
+      address: "Avenida Premium Wine, 123, Distrito Downtown",
       hours: "Seg-Sáb: 10h-20h | Dom: 12h-18h",
-      copyright: "© 2024 VineStore. Todos os direitos reservados.",
+      copyright: "© 2024 Wine Gallery. Todos os direitos reservados.",
       secure: "Compra Segura",
     },
     contact: {

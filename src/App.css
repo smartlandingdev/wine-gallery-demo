@@ -1,15 +1,40 @@
 @import "tailwindcss";
 
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
+/* Custom CSS Variables - Luxury Wine Palette */
+:root {
+  --burgundy: #6B1C23;
+  --burgundy-deep: #4A0E13;
+  --gold: #D4AF37;
+  --gold-light: #F0D78C;
+  --off-white: #FAF7F2;
+  --warm-gray: #E8E3DA;
 }
 
-/* Custom animations */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  background: var(--off-white);
+}
+
+body {
+  background: var(--off-white);
+  color: var(--burgundy-deep);
+}
+
+/* Fade-in animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -20,7 +45,7 @@ html {
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-40px);
   }
   to {
     opacity: 1;
@@ -31,7 +56,7 @@ html {
 @keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
@@ -39,51 +64,100 @@ html {
   }
 }
 
-/* Utility classes for animations */
+/* Parallax slide effect for bottles */
+@keyframes parallaxSlide {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(5px);
+  }
+}
+
+/* Gentle float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Utility classes */
+.animate-fade-in {
+  animation: fadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-fade-in-left {
-  animation: fadeInLeft 0.6s ease-out;
+  animation: fadeInLeft 1s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-fade-in-right {
-  animation: fadeInRight 0.6s ease-out;
+  animation: fadeInRight 1s ease-out forwards;
+  opacity: 0;
 }
 
-/* Hover effects for cards */
+.animate-parallax-slide {
+  animation: parallaxSlide 6s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Hover effects - subtle luxury */
 .card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 40px -10px rgba(107, 28, 35, 0.15);
 }
 
-/* Parallax effect for background images */
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+/* Gold line decoration */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
-/* Custom scrollbar */
+/* Thin icons styling */
+svg {
+  stroke-width: 1;
+}
+
+/* Custom scrollbar - Minimal Luxury */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--warm-gray);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: var(--gold);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--burgundy);
 }

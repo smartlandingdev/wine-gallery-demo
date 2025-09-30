@@ -10,10 +10,9 @@ import { Partners } from "./components/Partners";
 import { FAQ } from "./components/FAQ";
 import { Newsletter } from "./components/Newsletter";
 import { Contact } from "./components/Contact";
-import { StoreInfo } from "./components/StoreInfo";
 import { Footer } from "./components/Footer";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
-import { TranslationProvider } from "./contexts/TranslationContext";
+import { TranslationProvider } from "./contexts/TranslationContext.tsx";
 
 function App() {
   const scrollToSection = (sectionId: string) => {
@@ -44,7 +43,6 @@ function App() {
         <FAQ />
         <Newsletter />
         <Contact />
-        <StoreInfo />
         <Footer />
         <FloatingWhatsApp />
       </div>
