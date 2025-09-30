@@ -127,7 +127,7 @@ export const Blog = () => {
           {articles.map((article, index) => (
             <article
               key={article.id}
-              ref={(el) => (cardRefs.current[index] = el)}
+              ref={(el) => { cardRefs.current[index] = el; }}
               className="group cursor-pointer"
               style={{
                 opacity: visibleCards.includes(index) ? 1 : 0,

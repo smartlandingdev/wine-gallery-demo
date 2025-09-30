@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -128,16 +128,19 @@ export const StaggeredItem = ({ children, className = '' }: { children: ReactNod
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
+      y: 0
     }
   };
 
   return (
-    <motion.div className={className} variants={item}>
+    <motion.div
+      className={className}
+      variants={item}
+      transition={{
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as any
+      }}
+    >
       {children}
     </motion.div>
   );
