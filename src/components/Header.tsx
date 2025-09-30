@@ -75,6 +75,7 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
         </div>
       </motion.div>
 
+
       {/* Main Content - Maximum Breathing Space with Framer Motion */}
       <motion.div
         className="relative z-10 text-center max-w-4xl mx-auto px-6"
