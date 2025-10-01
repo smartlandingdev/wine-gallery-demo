@@ -9,7 +9,7 @@ interface HeaderProps {
 export const Header = ({ onLearnMoreClick }: HeaderProps) => {
   const { language, t, toggleLanguage } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll();
 
   // Parallax transforms - mais intenso e sofisticado
   const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '60%']);
@@ -286,16 +286,22 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
         {/* Scroll Indicator Premium */}
         <motion.div
           className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
+          initial={{ opacity: 0 }}
           animate={{
-            y: [0, 12, 0]
+            y: [0, 12, 0],
+            opacity: 0.6
           }}
           transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            ease: "easeInOut"
+            y: {
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            opacity: {
+              duration: 0.8,
+              delay: 1
+            }
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
         >
           <span className="text-[9px] uppercase tracking-[0.3em] font-light" style={{ color: 'var(--gold)' }}>
             Scroll
