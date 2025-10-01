@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
+import { motion, useInView } from 'framer-motion';
 
 // Email Icon
 const EmailIcon = () => (
@@ -35,6 +36,8 @@ const BellIcon = () => (
 
 export const Newsletter = () => {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -50,45 +53,90 @@ export const Newsletter = () => {
   };
 
   return (
-    <section id="newsletter" className="py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--burgundy-deep) 0%, var(--burgundy) 100%)' }}>
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]"
+    <section ref={sectionRef} id="newsletter" className="py-40 relative overflow-hidden" style={{ background: 'var(--gradient-luxury)' }}>
+      {/* Animated Background Pattern */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px), radial-gradient(circle at 80% 80%, var(--gold) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
+          backgroundImage: 'radial-gradient(circle at 20% 50%, var(--gold) 2px, transparent 2px), radial-gradient(circle at 80% 80%, var(--gold) 2px, transparent 2px)',
+          backgroundSize: '60px 60px'
+        }}
+        animate={{
+          backgroundPosition: ['0% 0%', '100% 100%']
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+
+      {/* Floating Gold Glow */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-3xl"
+        style={{ background: 'var(--gradient-glow)' }}
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-6 mb-8 animate-fade-in">
-            <div className="h-px w-20 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
-            <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
+        <div className="text-center mb-16">
+          <motion.div
+            className="flex items-center justify-center gap-6 mb-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="h-px w-28 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+            <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
               Newsletter Exclusiva
             </span>
-            <div className="h-px w-20 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
-          </div>
+            <motion.div
+              className="h-px w-28 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+          </motion.div>
 
-          <h2
-            className="text-5xl md:text-7xl font-light leading-tight mb-6 animate-fade-in-up"
+          <motion.h2
+            className="text-6xl md:text-8xl font-light leading-tight mb-8"
             style={{
               fontFamily: "'Playfair Display', serif",
               color: 'white',
-              animationDelay: '0.1s'
+              textShadow: '0 4px 40px rgba(201, 166, 107, 0.3)'
             }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.3 }}
           >
             Quero Descobrir Novos Vinhos
-          </h2>
+          </motion.h2>
 
-          <p
-            className="text-lg font-light leading-loose max-w-2xl mx-auto animate-fade-in-up"
+          <motion.p
+            className="text-xl font-light leading-relaxed max-w-3xl mx-auto"
             style={{
-              color: 'var(--gold-light)',
-              animationDelay: '0.2s'
+              fontFamily: "'Inter', sans-serif",
+              color: 'var(--gold-light)'
             }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.5 }}
           >
             Receba recomendações personalizadas, ofertas exclusivas e conteúdo premium
-          </p>
+          </motion.p>
         </div>
 
         {/* Form */}
@@ -110,15 +158,26 @@ export const Newsletter = () => {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <motion.form
+            onSubmit={handleSubmit}
+            className="max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             <div className="relative">
-              {/* Input Container */}
-              <div
-                className="flex items-center border bg-white/95 backdrop-blur-sm overflow-hidden transition-all duration-500"
+              {/* Input Container - Premium Glow */}
+              <motion.div
+                className="flex items-center border-2 bg-white/98 backdrop-blur-md overflow-hidden"
                 style={{
-                  borderColor: isFocused ? 'var(--gold)' : 'transparent',
-                  boxShadow: isFocused ? '0 0 30px rgba(212, 175, 55, 0.3)' : 'none'
+                  borderColor: isFocused ? 'var(--gold)' : 'rgba(201, 166, 107, 0.3)'
                 }}
+                animate={{
+                  boxShadow: isFocused
+                    ? '0 0 50px rgba(201, 166, 107, 0.6), 0 0 100px rgba(201, 166, 107, 0.3)'
+                    : '0 10px 40px rgba(201, 166, 107, 0.2)'
+                }}
+                transition={{ duration: 0.5 }}
               >
                 {/* Email Icon */}
                 <div className="pl-6 pr-4">
@@ -138,31 +197,45 @@ export const Newsletter = () => {
                   style={{ color: 'var(--burgundy-deep)' }}
                 />
 
-                {/* Submit Button with Wine Glass */}
-                <button
+                {/* Submit Button - Premium Glow */}
+                <motion.button
                   type="submit"
-                  className="group relative px-8 py-5 text-sm font-light uppercase tracking-[0.2em] transition-all duration-500 overflow-hidden flex items-center gap-3 whitespace-nowrap"
+                  className="group relative px-12 py-6 text-sm font-light uppercase tracking-[0.25em] overflow-hidden flex items-center gap-3 whitespace-nowrap"
                   style={{
-                    backgroundColor: 'var(--gold)',
+                    background: 'var(--gradient-gold)',
                     color: 'white'
                   }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: '0 0 60px rgba(201, 166, 107, 0.8)'
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10 flex items-center gap-2">
+                  <span className="relative z-10 flex items-center gap-3">
                     Inscrever-se
                     <WineGlassIcon />
                   </span>
-                  <div
-                    className="absolute inset-0 bg-[var(--burgundy)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700"
+                  <motion.div
+                    className="absolute inset-0 bg-[var(--burgundy-deep)]"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '0%' }}
+                    transition={{ duration: 0.7 }}
                   />
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
 
               {/* Privacy Text */}
-              <p className="text-xs font-light mt-4 text-center" style={{ color: 'var(--gold-light)', opacity: 0.8 }}>
+              <motion.p
+                className="text-sm font-light mt-6 text-center"
+                style={{ color: 'var(--gold-light)', opacity: 0.9 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 0.9 } : {}}
+                transition={{ delay: 0.9 }}
+              >
                 🔒 {t.newsletter.privacy}
-              </p>
+              </motion.p>
             </div>
-          </form>
+          </motion.form>
         )}
 
         {/* Benefits - Icon Cards */}
@@ -186,7 +259,7 @@ export const Newsletter = () => {
           ].map((benefit, index) => (
             <div
               key={index}
-              className="border bg-white/5 backdrop-blur-sm p-8 text-center transition-all duration-500 hover:bg-white/10 hover:border-[var(--gold)] animate-fade-in-up"
+              className="border bg-white/5 backdrop-blur-sm p-8 text-center transition-all duration-500 hover:bg-white/10 hover:border-[var(--gold)] animate-fade-in-up scale-hover liquid-hover"
               style={{
                 borderColor: 'rgba(212, 175, 55, 0.2)',
                 animationDelay: `${0.4 + index * 0.1}s`

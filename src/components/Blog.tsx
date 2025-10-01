@@ -1,5 +1,6 @@
 import { useTranslation } from "../hooks/useTranslation";
 import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 // Clock Icon for Read Time
 const ClockIcon = () => (
@@ -18,6 +19,9 @@ const ArrowIcon = () => (
 
 export const Blog = () => {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -82,70 +86,111 @@ export const Blog = () => {
   }, [visibleCards]);
 
   return (
-    <section id="blog" className="py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
-      {/* Background decoration */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] opacity-[0.02]"
+    <section ref={sectionRef} id="blog" className="py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
+      {/* Background decoration with animation */}
+      <motion.div
+        className="absolute bottom-0 left-0 w-[600px] h-[600px] opacity-[0.03]"
         style={{ background: 'radial-gradient(circle, var(--burgundy) 0%, transparent 70%)' }}
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, 50, 0]
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
       />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
-        <div className="text-center mb-24">
-          <div className="flex items-center justify-center gap-6 mb-8 animate-fade-in">
-            <div className="h-px w-20 gold-line" />
-            <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
+        <div className="text-center mb-28">
+          <motion.div
+            className="flex items-center justify-center gap-6 mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="h-px w-24 gold-line"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
+            <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
               Conhecimento
             </span>
-            <div className="h-px w-20 gold-line" />
-          </div>
+            <motion.div
+              className="h-px w-24 gold-line"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
+          </motion.div>
 
-          <h2
-            className="text-5xl md:text-7xl font-light leading-tight mb-6 animate-fade-in-up"
+          <motion.h2
+            className="text-5xl md:text-7xl font-light leading-tight mb-6"
             style={{
               fontFamily: "'Playfair Display', serif",
-              color: 'var(--burgundy-deep)',
-              animationDelay: '0.1s'
+              color: 'var(--burgundy-deep)'
             }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.3 }}
           >
             {t.blog.title}
-          </h2>
+          </motion.h2>
 
-          <p
-            className="text-lg font-light leading-loose max-w-2xl mx-auto animate-fade-in-up"
+          <motion.p
+            className="text-lg font-light leading-loose max-w-2xl mx-auto"
             style={{
+              fontFamily: "'Inter', sans-serif",
               color: 'var(--burgundy)',
-              opacity: 0.8,
-              animationDelay: '0.2s'
+              opacity: 0.8
             }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 0.8, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             {t.blog.subtitle}
-          </p>
+          </motion.p>
         </div>
 
-        {/* Blog Cards Grid */}
+        {/* Blog Cards Grid - Premium Animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {articles.map((article, index) => (
-            <article
+            <motion.article
               key={article.id}
-              ref={(el) => { cardRefs.current[index] = el; }}
               className="group cursor-pointer"
-              style={{
-                opacity: visibleCards.includes(index) ? 1 : 0,
-                transform: visibleCards.includes(index) ? 'translateY(0)' : 'translateY(40px)',
-                transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
-                transitionDelay: `${index * 0.15}s`
-              }}
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.5 + index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
+              onMouseEnter={() => setHoveredId(article.id)}
+              onMouseLeave={() => setHoveredId(null)}
             >
               {/* Card Container */}
-              <div className="relative border overflow-hidden transition-all duration-700 card-hover"
-                style={{ borderColor: 'var(--warm-gray)', backgroundColor: 'white' }}
+              <motion.div
+                className="relative border overflow-hidden backdrop-blur-sm"
+                style={{
+                  borderColor: hoveredId === article.id ? 'var(--gold)' : 'rgba(201, 166, 107, 0.2)',
+                  backgroundColor: 'white'
+                }}
+                whileHover={{
+                  y: -12,
+                  boxShadow: '0 40px 80px -15px rgba(59, 13, 17, 0.3), 0 0 60px -10px rgba(201, 166, 107, 0.4)'
+                }}
+                transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 {/* Cover Image */}
                 <div className="relative h-[280px] overflow-hidden">
-                  <img
+                  <motion.img
                     src={article.image}
                     alt={article.title}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover"
+                    animate={{
+                      scale: hoveredId === article.id ? 1.12 : 1
+                    }}
+                    transition={{ duration: 0.7 }}
                   />
 
                   {/* Gradient Overlay */}
@@ -236,30 +281,49 @@ export const Blog = () => {
                     }}
                   />
                 </div>
-              </div>
-            </article>
+              </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <button
-            className="group relative border px-12 py-4 text-sm font-light uppercase tracking-[0.25em] transition-all duration-700 hover:text-white overflow-hidden"
+        {/* View All Button - Premium */}
+        <motion.div
+          className="text-center mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <motion.button
+            className="group relative border-2 px-16 py-5 text-sm font-light uppercase tracking-[0.3em] overflow-hidden backdrop-blur-sm"
             style={{
               borderColor: 'var(--gold)',
-              color: 'var(--burgundy-deep)'
+              color: 'var(--burgundy-deep)',
+              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              boxShadow: '0 0 30px rgba(201, 166, 107, 0.2)'
             }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: '0 0 50px rgba(201, 166, 107, 0.5)'
+            }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="relative z-10 flex items-center gap-3">
+            <span className="relative z-10 flex items-center gap-3 group-hover:text-white transition-colors duration-700">
               Ver Todos os Artigos
-              <span className="text-[10px] group-hover:translate-x-1 transition-transform duration-500">→</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                →
+              </motion.span>
             </span>
-            <div
-              className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700"
-              style={{ backgroundColor: 'var(--gold)' }}
+            <motion.div
+              className="absolute inset-0"
+              style={{ background: 'var(--gradient-gold)', translateX: '-100%' }}
+              whileHover={{ translateX: '0%' }}
+              transition={{ duration: 0.7 }}
             />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
 
       <style>{`

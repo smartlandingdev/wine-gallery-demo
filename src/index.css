@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
+/* Performance optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -9,4 +15,21 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+/* Performance: will-change for animated elements */
+.animate-parallax,
+.hover-lift,
+.magnetic-hover,
+.liquid-hover {
+  will-change: transform;
+}
+
+/* GPU acceleration */
+.card-hover,
+.scale-hover,
+.btn-luxury {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
