@@ -92,6 +92,34 @@ export const Testimonials = () => {
 
   return (
     <section ref={sectionRef} id="testimonials" className="py-32 relative overflow-hidden" style={{ background: 'var(--warm-gray)' }}>
+      {/* Paper Texture Background - Same as Gallery */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.3) 1px, transparent 1px),
+            radial-gradient(circle at 60% 70%, rgba(160, 82, 45, 0.25) 1px, transparent 1px),
+            radial-gradient(circle at 80% 20%, rgba(101, 67, 33, 0.2) 1px, transparent 1px),
+            radial-gradient(circle at 30% 80%, rgba(139, 69, 19, 0.28) 1px, transparent 1px),
+            radial-gradient(circle at 50% 50%, rgba(160, 82, 45, 0.22) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px, 120px 120px, 100px 100px, 110px 110px, 90px 90px',
+          backgroundPosition: '0 0, 40px 60px, 80px 20px, 30px 90px, 50px 50px'
+        }}
+      />
+
+      {/* Linen Texture - Same as Gallery */}
+      <div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage: `
+            linear-gradient(90deg, rgba(201, 166, 107, 0.15) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(201, 166, 107, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '30px 30px'
+        }}
+      />
+
       {/* Floating Gold Accent with Animation */}
       <motion.div
         className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl opacity-15"
@@ -154,100 +182,282 @@ export const Testimonials = () => {
         </svg>
       </motion.div>
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        {/* Section Title */}
-        <div className="text-center mb-20">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Layout: Testimonials Left, Title Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+          {/* Left Side - Testimonials Carousel */}
           <motion.div
-            className="flex items-center justify-center gap-6 mb-8"
-            initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            className="relative"
+            initial={{ opacity: 0, x: -60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.2 }}
           >
-            <motion.div
-              className="h-px w-24 gold-line"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
-            <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
-              Experiências
-            </span>
-            <motion.div
-              className="h-px w-24 gold-line"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
+            {/* Impressive Testimonial Card - Redesigned */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, scale: 0.95, rotateY: -10 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                exit={{ opacity: 0, scale: 0.95, rotateY: 10 }}
+                transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
+                className="relative p-14 overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(107, 28, 35, 0.03) 0%, rgba(201, 166, 107, 0.02) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(201, 166, 107, 0.15)'
+                }}
+              >
+                {/* Decorative Gold Corner Accent - Top Left */}
+                <motion.div
+                  className="absolute top-0 left-0 w-24 h-24 opacity-40"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 2, 0]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                    <path d="M0 0 L96 0 L0 96 Z" fill="url(#gold-gradient)" opacity="0.15"/>
+                    <line x1="20" y1="0" x2="0" y2="20" stroke="var(--gold)" strokeWidth="0.5"/>
+                    <line x1="40" y1="0" x2="0" y2="40" stroke="var(--gold)" strokeWidth="0.5" opacity="0.6"/>
+                    <line x1="60" y1="0" x2="0" y2="60" stroke="var(--gold)" strokeWidth="0.5" opacity="0.3"/>
+                    <defs>
+                      <linearGradient id="gold-gradient" x1="0" y1="0" x2="96" y2="96">
+                        <stop offset="0%" stopColor="var(--gold)" />
+                        <stop offset="100%" stopColor="transparent" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </motion.div>
+
+                {/* Decorative Gold Corner Accent - Bottom Right */}
+                <motion.div
+                  className="absolute bottom-0 right-0 w-24 h-24 opacity-40 rotate-180"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [180, 182, 180]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                >
+                  <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                    <path d="M0 0 L96 0 L0 96 Z" fill="url(#gold-gradient-2)" opacity="0.15"/>
+                    <line x1="20" y1="0" x2="0" y2="20" stroke="var(--gold)" strokeWidth="0.5"/>
+                    <line x1="40" y1="0" x2="0" y2="40" stroke="var(--gold)" strokeWidth="0.5" opacity="0.6"/>
+                    <line x1="60" y1="0" x2="0" y2="60" stroke="var(--gold)" strokeWidth="0.5" opacity="0.3"/>
+                    <defs>
+                      <linearGradient id="gold-gradient-2" x1="0" y1="0" x2="96" y2="96">
+                        <stop offset="0%" stopColor="var(--gold)" />
+                        <stop offset="100%" stopColor="transparent" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </motion.div>
+
+                {/* Large Decorative Quote Mark */}
+                <motion.div
+                  className="absolute -top-4 -left-2 opacity-[0.08]"
+                  animate={{
+                    y: [0, -5, 0],
+                    rotate: [0, 3, 0]
+                  }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <svg width="180" height="180" viewBox="0 0 48 48" fill="var(--gold)">
+                    <path d="M10 20C10 14 12 8 18 8C18 14 14 14 14 20C14 23 16 24 18 24C20 24 22 22 22 20C22 16 18 12 18 8M28 20C28 14 30 8 36 8C36 14 32 14 32 20C32 23 34 24 36 24C38 24 40 22 40 20C40 16 36 12 36 8"/>
+                  </svg>
+                </motion.div>
+
+                {/* Testimonial Comment - Elegant Typography */}
+                <motion.p
+                  className="text-2xl font-light leading-relaxed mb-12 relative z-10"
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    color: 'var(--burgundy-deep)',
+                    fontStyle: 'italic'
+                  }}
+                >
+                  {testimonials[currentIndex].comment}
+                </motion.p>
+
+                {/* Stars Rating with Glow */}
+                <motion.div
+                  className="flex gap-2 mb-10 relative z-10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {renderStars(testimonials[currentIndex].rating)}
+                </motion.div>
+
+                {/* Author Section - Sophisticated Layout */}
+                <div className="flex items-center gap-5 relative z-10">
+                  {/* Photo with Gold Ring */}
+                  <motion.div
+                    className="relative"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'linear-gradient(135deg, var(--gold), var(--burgundy))',
+                        transform: 'scale(1.15)',
+                        filter: 'blur(8px)',
+                        opacity: 0.4
+                      }}
+                      animate={{
+                        rotate: [0, 360]
+                      }}
+                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.img
+                      src={testimonials[currentIndex].image}
+                      alt={testimonials[currentIndex].name}
+                      className="relative w-20 h-20 rounded-full object-cover"
+                      style={{
+                        border: '3px solid rgba(201, 166, 107, 0.4)'
+                      }}
+                    />
+                  </motion.div>
+
+                  {/* Vertical Divider - Elegant Gold Line */}
+                  <motion.div
+                    className="w-px h-16 bg-gradient-to-b from-transparent via-[var(--gold)] to-transparent opacity-40"
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  />
+
+                  {/* Name & Role */}
+                  <div>
+                    <motion.h4
+                      className="text-xl font-light tracking-wide mb-1"
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        color: 'var(--burgundy-deep)'
+                      }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      {testimonials[currentIndex].name}
+                    </motion.h4>
+                    <motion.p
+                      className="text-xs uppercase tracking-[0.25em] font-light"
+                      style={{
+                        color: 'var(--gold)',
+                        opacity: 0.9
+                      }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 0.9, x: 0 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      {testimonials[currentIndex].role}
+                    </motion.p>
+                  </div>
+                </div>
+
+                {/* Inner Border Glow on Hover */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    boxShadow: 'inset 0 0 60px rgba(201, 166, 107, 0.1)'
+                  }}
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Dots - Elegant Design */}
+            <div className="flex justify-start gap-3 mt-10">
+              {testimonials.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className="relative transition-all cursor-pointer"
+                  whileHover={{ scale: 1.3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <motion.div
+                    className="rounded-full"
+                    style={{
+                      width: index === currentIndex ? '40px' : '10px',
+                      height: '10px',
+                      backgroundColor: index === currentIndex ? 'var(--gold)' : 'rgba(201, 166, 107, 0.25)'
+                    }}
+                    animate={{
+                      width: index === currentIndex ? '40px' : '10px',
+                      boxShadow: index === currentIndex
+                        ? '0 0 20px rgba(201, 166, 107, 0.5)'
+                        : 'none'
+                    }}
+                    transition={{ duration: 0.4 }}
+                  />
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
 
-          <motion.h2
-            className="text-5xl md:text-7xl font-light leading-tight mb-6"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: 'var(--burgundy-deep)'
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.3 }}
+          {/* Right Side - Section Title (with right alignment) */}
+          <motion.div
+            className="text-right lg:pl-12"
+            initial={{ opacity: 0, x: 60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9 }}
           >
-            {t.testimonials.title}
-          </motion.h2>
+            <motion.div
+              className="flex items-center justify-end gap-6 mb-8"
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
+                Experiências
+              </span>
+              <motion.div
+                className="h-px w-20 gold-line"
+                initial={{ scaleX: 0 }}
+                animate={isInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
+            </motion.div>
 
-          <motion.p
-            className="text-lg font-light leading-loose max-w-2xl mx-auto"
-            style={{
-              color: 'var(--burgundy)',
-              opacity: 0.8
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 0.8, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {t.testimonials.subtitle}
-          </motion.p>
+            <motion.h2
+              className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                color: 'var(--burgundy-deep)'
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.9, delay: 0.4 }}
+            >
+              {t.testimonials.title}
+            </motion.h2>
+
+            <motion.p
+              className="text-lg font-light leading-relaxed"
+              style={{
+                color: 'var(--burgundy)',
+                opacity: 0.8
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 0.8, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              {t.testimonials.subtitle}
+            </motion.p>
+          </motion.div>
+
         </div>
 
-        {/* Carousel Container */}
+        {/* OLD Carousel - REMOVED */}
         <motion.div
-          className="relative"
+          className="relative hidden"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {/* Navigation Buttons - Premium Style */}
-          <motion.button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-md group -translate-x-20 hidden lg:flex"
-            style={{ borderColor: 'var(--gold)', backgroundColor: 'rgba(12, 12, 12, 0.8)' }}
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: 'var(--gold)',
-              boxShadow: '0 0 30px rgba(201, 166, 107, 0.6)'
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="group-hover:stroke-white transition-colors">
-              <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.button>
-
-          <motion.button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-md group translate-x-20 hidden lg:flex"
-            style={{ borderColor: 'var(--gold)', backgroundColor: 'rgba(12, 12, 12, 0.8)' }}
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: 'var(--gold)',
-              boxShadow: '0 0 30px rgba(201, 166, 107, 0.6)'
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="group-hover:stroke-white transition-colors">
-              <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.button>
-
-          {/* Testimonial Card with Premium Effects */}
           <motion.div
             className="relative border backdrop-blur-md p-16 min-h-[420px] flex flex-col items-center justify-center overflow-hidden"
             style={{

@@ -103,6 +103,34 @@ export const Gallery = () => {
 
   return (
     <section ref={sectionRef} id="gallery" className="py-32 relative overflow-hidden" style={{ background: 'var(--warm-gray)' }}>
+      {/* Paper Texture Background - More Visible */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.3) 1px, transparent 1px),
+            radial-gradient(circle at 60% 70%, rgba(160, 82, 45, 0.25) 1px, transparent 1px),
+            radial-gradient(circle at 80% 20%, rgba(101, 67, 33, 0.2) 1px, transparent 1px),
+            radial-gradient(circle at 30% 80%, rgba(139, 69, 19, 0.28) 1px, transparent 1px),
+            radial-gradient(circle at 50% 50%, rgba(160, 82, 45, 0.22) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px, 120px 120px, 100px 100px, 110px 110px, 90px 90px',
+          backgroundPosition: '0 0, 40px 60px, 80px 20px, 30px 90px, 50px 50px'
+        }}
+      />
+
+      {/* Linen Texture - More Visible */}
+      <div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage: `
+            linear-gradient(90deg, rgba(201, 166, 107, 0.15) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(201, 166, 107, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '30px 30px'
+        }}
+      />
+
       {/* Floating Gold Accent */}
       <motion.div
         className="absolute top-20 right-20 w-[400px] h-[400px] rounded-full blur-3xl opacity-20"
@@ -118,17 +146,17 @@ export const Gallery = () => {
         }}
       />
 
-      <div className="max-w-[1600px] mx-auto px-6">
-        {/* Section Title */}
-        <div className="text-center mb-20">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Title - Aligned with other sections */}
+        <div className="mb-20">
           <motion.div
-            className="flex items-center justify-center gap-6 mb-8"
+            className="flex items-center gap-6 mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="h-px w-24 gold-line"
+              className="h-px w-20 gold-line"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -136,12 +164,6 @@ export const Gallery = () => {
             <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
               Coleção Premium
             </span>
-            <motion.div
-              className="h-px w-24 gold-line"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
           </motion.div>
 
           <motion.h2
@@ -157,9 +179,9 @@ export const Gallery = () => {
             {t.gallery.title}
           </motion.h2>
 
-          {/* Smart Filters - Premium Style */}
+          {/* Elegant Filters - More Visible */}
           <motion.div
-            className="flex items-center justify-center gap-6 flex-wrap"
+            className="flex items-center gap-3 flex-wrap"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -168,225 +190,162 @@ export const Gallery = () => {
               <motion.button
                 key={country}
                 onClick={() => setSelectedCountry(country)}
-                className="relative px-8 py-3 text-xs font-light uppercase tracking-[0.25em] border overflow-hidden"
+                className="relative px-6 py-2.5 text-xs font-medium uppercase tracking-[0.2em]"
                 style={{
-                  color: selectedCountry === country ? 'white' : 'var(--burgundy)',
-                  borderColor: selectedCountry === country ? 'var(--gold)' : 'transparent',
-                  backgroundColor: selectedCountry === country ? 'var(--gold)' : 'rgba(255, 255, 255, 0.7)',
-                  boxShadow: selectedCountry === country ? '0 0 30px rgba(201, 166, 107, 0.5)' : 'none'
+                  color: selectedCountry === country ? 'var(--burgundy-deep)' : 'var(--burgundy)',
+                  backgroundColor: selectedCountry === country ? 'rgba(201, 166, 107, 0.25)' : 'rgba(201, 166, 107, 0.08)',
+                  borderBottom: selectedCountry === country ? '2px solid var(--gold)' : '2px solid rgba(139, 69, 19, 0.2)'
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 whileHover={{
-                  scale: 1.05,
-                  boxShadow: selectedCountry !== country ? '0 0 20px rgba(201, 166, 107, 0.3)' : '0 0 40px rgba(201, 166, 107, 0.6)'
+                  color: 'var(--burgundy-deep)',
+                  backgroundColor: 'rgba(201, 166, 107, 0.18)',
+                  borderBottom: '2px solid rgba(201, 166, 107, 0.5)'
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10">
-                  {country === "all" ? "Todos" : country}
-                </span>
+                {country === "all" ? "Todos" : country}
               </motion.button>
             ))}
           </motion.div>
         </div>
 
-        {/* Horizontal Slider */}
-        <div className="relative">
-          {/* Navigation Buttons - Premium Style */}
-          <motion.button
-            onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-md group"
-            style={{
-              borderColor: 'var(--gold)',
-              backgroundColor: 'rgba(12, 12, 12, 0.8)'
-            }}
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: 'var(--gold)',
-              boxShadow: '0 0 30px rgba(201, 166, 107, 0.6)'
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="group-hover:stroke-white transition-colors">
-              <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.button>
+      {/* Horizontal Draggable Slider - FULL Screen Width */}
+      <div className="relative w-screen -ml-[50vw] left-[50%]">
+        {/* Scrollable Container - Full Width with Drag */}
+        <div
+          ref={scrollRef}
+          className="flex gap-2 overflow-x-auto scrollbar-hide py-8 px-4 cursor-grab active:cursor-grabbing select-none"
+          style={{ scrollbarWidth: 'none' }}
+            onMouseDown={(e) => {
+              const slider = scrollRef.current;
+              if (!slider) return;
 
-          <motion.button
-            onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-md group"
-            style={{
-              borderColor: 'var(--gold)',
-              backgroundColor: 'rgba(12, 12, 12, 0.8)'
-            }}
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: 'var(--gold)',
-              boxShadow: '0 0 30px rgba(201, 166, 107, 0.6)'
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="group-hover:stroke-white transition-colors">
-              <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.button>
+              const startX = e.pageX - slider.offsetLeft;
+              const scrollLeft = slider.scrollLeft;
 
-          {/* Scrollable Container */}
-          <div
-            ref={scrollRef}
-            className="flex gap-10 overflow-x-auto scrollbar-hide py-8 px-16"
-            style={{ scrollbarWidth: 'none' }}
+              const handleMouseMove = (e: MouseEvent) => {
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+              };
+
+              const handleMouseUp = () => {
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
+              };
+
+              document.addEventListener('mousemove', handleMouseMove);
+              document.addEventListener('mouseup', handleMouseUp);
+            }}
           >
             <AnimatePresence mode="wait">
               {filteredWines.map((wine, index) => (
                 <motion.div
                   key={wine.id}
-                  className="flex-shrink-0 w-[340px]"
-                  initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex-shrink-0"
+                  style={{ width: 'calc(100vw / 4.5)' }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
                   onMouseEnter={() => setHoveredId(wine.id)}
                   onMouseLeave={() => setHoveredId(null)}
                 >
-                  {/* 3D Card Container - Dark Premium */}
+                  {/* Minimal Card with Border on Entire Card */}
                   <motion.div
-                    className="relative h-[520px] border overflow-hidden cursor-pointer"
+                    className="relative cursor-pointer h-full p-6"
                     style={{
-                      borderColor: hoveredId === wine.id ? '#DC143C' : 'rgba(220, 20, 60, 0.3)',
-                      background: hoveredId === wine.id
-                        ? 'linear-gradient(135deg, #1A0A0C 0%, #2D0E12 100%)'
-                        : 'linear-gradient(135deg, #0C0C0C 0%, #1A0508 100%)',
-                      backdropFilter: 'blur(10px)'
+                      backgroundColor: 'rgba(255, 255, 255, 0.03)'
                     }}
-                    whileHover={{
-                      y: -12,
-                      rotateY: 5,
-                      boxShadow: '0 50px 100px -20px rgba(220, 20, 60, 0.6), 0 0 80px -15px rgba(220, 20, 60, 0.4)'
+                    animate={{
+                      backgroundColor: hoveredId === wine.id
+                        ? 'rgba(255, 255, 255, 0.06)'
+                        : 'rgba(255, 255, 255, 0.03)'
                     }}
-                    transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+                    transition={{ duration: 0.4 }}
                   >
-                    {/* Limited Edition Tag - Red Premium */}
+                    {/* Border on Entire Card appears on hover - NO external glow */}
+                    <motion.div
+                      className="absolute inset-0 pointer-events-none"
+                      animate={{
+                        opacity: hoveredId === wine.id ? 1 : 0,
+                        boxShadow: hoveredId === wine.id
+                          ? 'inset 0 0 0 2px rgba(201, 166, 107, 0.8)'
+                          : 'inset 0 0 0 0px transparent'
+                      }}
+                      transition={{ duration: 0.4 }}
+                    />
+
+                    {/* Limited Edition Tag */}
                     {wine.limited && (
                       <motion.div
-                        className="absolute top-5 right-5 z-10 px-4 py-1.5 text-[9px] uppercase tracking-[0.25em] font-light border backdrop-blur-sm"
+                        className="absolute top-3 right-3 px-3 py-1 text-[8px] uppercase tracking-[0.2em] font-light z-10"
                         style={{
-                          backgroundColor: '#DC143C',
-                          color: 'white',
-                          borderColor: '#FF1744',
-                          boxShadow: '0 4px 15px rgba(220, 20, 60, 0.6), 0 0 25px rgba(220, 20, 60, 0.4)'
+                          backgroundColor: 'rgba(201, 166, 107, 0.95)',
+                          color: 'white'
                         }}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
                       >
-                        Edição Limitada
+                        Limited
                       </motion.div>
                     )}
 
-                    {/* Wine Image with Hover Effect */}
-                    <div className="h-[340px] flex items-center justify-center p-10 overflow-hidden">
+                    {/* Wine Image with rustic filter and subtle background */}
+                    <div className="relative h-[350px] mb-4 overflow-hidden">
                       <motion.img
                         src={wine.image}
                         alt={wine.name}
-                        className="h-full w-auto object-contain"
+                        className="w-full h-full object-contain pointer-events-none"
                         animate={{
-                          scale: hoveredId === wine.id ? 1.18 : 1,
-                          y: hoveredId === wine.id ? -12 : 0
+                          scale: hoveredId === wine.id ? 1.05 : 1
                         }}
-                        transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+                        transition={{ duration: 0.5 }}
                         style={{
                           filter: hoveredId === wine.id
-                            ? 'drop-shadow(0 25px 40px rgba(59, 13, 17, 0.4))'
-                            : 'drop-shadow(0 10px 20px rgba(59, 13, 17, 0.15))'
+                            ? 'contrast(1.15) saturate(0.88) brightness(0.95) sepia(0.15) hue-rotate(-5deg) drop-shadow(0 20px 40px rgba(201, 166, 107, 0.3))'
+                            : 'contrast(1.12) saturate(0.85) brightness(0.92) sepia(0.2) hue-rotate(-5deg) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1))'
                         }}
                       />
                     </div>
 
-                    {/* Wine Details - Dark Premium Design */}
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 p-7 backdrop-blur-md"
-                      style={{
-                        backgroundColor: hoveredId === wine.id
-                          ? 'rgba(45, 14, 18, 0.98)'
-                          : 'rgba(12, 12, 12, 0.95)',
-                        borderTop: hoveredId === wine.id ? '2px solid #DC143C' : '1px solid rgba(220, 20, 60, 0.2)'
-                      }}
-                      animate={{
-                        backgroundColor: hoveredId === wine.id
-                          ? 'rgba(45, 14, 18, 0.98)'
-                          : 'rgba(12, 12, 12, 0.95)'
-                      }}
-                      transition={{ duration: 0.5 }}
-                    >
+                    {/* Minimal Description Below */}
+                    <div className="space-y-1">
                       <motion.h3
-                        className="text-xl font-light mb-2 tracking-wide"
+                        className="text-base font-light tracking-wide"
                         style={{
                           fontFamily: "'Playfair Display', serif",
-                          color: hoveredId === wine.id ? '#FF1744' : '#F5F5F5',
-                          textShadow: hoveredId === wine.id ? '0 0 20px rgba(220, 20, 60, 0.5)' : 'none'
-                        }}
-                        animate={{
-                          color: hoveredId === wine.id ? '#FF1744' : '#F5F5F5'
+                          color: 'var(--burgundy-deep)'
                         }}
                       >
                         {wine.name}
                       </motion.h3>
 
-                      <motion.p
-                        className="text-xs mb-4 font-light"
+                      <p
+                        className="text-xs font-light"
                         style={{
-                          fontFamily: "'Inter', sans-serif",
-                          color: hoveredId === wine.id ? '#FFB3C1' : 'rgba(245, 245, 245, 0.7)'
+                          color: 'var(--burgundy)',
+                          opacity: 0.7
                         }}
                       >
                         {wine.region}, {wine.country}
-                      </motion.p>
+                      </p>
 
-                      <div className="flex items-center justify-between">
-                        <motion.span
-                          className="text-2xl font-light tracking-wide"
-                          style={{
-                            fontFamily: "'Playfair Display', serif",
-                            color: hoveredId === wine.id ? '#FFFFFF' : 'rgba(245, 245, 245, 0.95)',
-                            textShadow: hoveredId === wine.id ? '0 0 15px rgba(255, 255, 255, 0.3)' : 'none'
-                          }}
-                          animate={{
-                            scale: hoveredId === wine.id ? 1.05 : 1
-                          }}
-                        >
-                          {wine.price}
-                        </motion.span>
-
-                        {/* View Details Button */}
-                        <motion.button
-                          className="text-xs uppercase tracking-[0.2em] font-light flex items-center gap-2 border px-4 py-2"
-                          style={{
-                            color: hoveredId === wine.id ? '#DC143C' : 'transparent',
-                            borderColor: hoveredId === wine.id ? '#DC143C' : 'transparent',
-                            backgroundColor: hoveredId === wine.id ? 'rgba(220, 20, 60, 0.15)' : 'transparent'
-                          }}
-                          animate={{
-                            opacity: hoveredId === wine.id ? 1 : 0,
-                            x: hoveredId === wine.id ? 0 : -10
-                          }}
-                          whileHover={{
-                            backgroundColor: '#DC143C',
-                            color: 'white',
-                            scale: 1.05,
-                            boxShadow: '0 0 25px rgba(220, 20, 60, 0.6)'
-                          }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          Ver mais
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <path d="M5 12h14m0 0l-7-7m7 7l-7 7" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </motion.button>
-                      </div>
-                    </motion.div>
+                      <motion.div
+                        className="text-lg font-light pt-1"
+                        style={{
+                          fontFamily: "'Playfair Display', serif",
+                          color: hoveredId === wine.id ? 'var(--gold)' : 'var(--burgundy-deep)'
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {wine.price}
+                      </motion.div>
+                    </div>
                   </motion.div>
                 </motion.div>
               ))}

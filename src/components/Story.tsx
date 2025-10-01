@@ -74,17 +74,74 @@ export const Story = () => {
 
   return (
     <section ref={sectionRef} id="story" className="py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
-      {/* Background decoration with Animation */}
+      {/* Gold Shimmer Wave */}
       <motion.div
-        className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.02]"
-        style={{ background: 'radial-gradient(circle, var(--gold) 0%, transparent 70%)' }}
+        className="absolute inset-0 opacity-[0.14]"
+        style={{
+          background: 'linear-gradient(120deg, transparent 0%, rgba(201, 166, 107, 0.6) 45%, rgba(212, 175, 55, 0.4) 55%, transparent 100%)',
+          filter: 'blur(50px)'
+        }}
         animate={{
-          scale: [1, 1.2, 1],
-          x: [0, -30, 0],
-          y: [0, 30, 0]
+          x: ['-100%', '200%']
         }}
         transition={{
-          duration: 15,
+          duration: 35,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+
+      {/* Burgundy Flow */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          background: 'linear-gradient(-60deg, transparent 0%, rgba(107, 28, 35, 0.5) 50%, transparent 100%)',
+          filter: 'blur(60px)'
+        }}
+        animate={{
+          x: ['100%', '-100%', '100%'],
+          y: [0, 60, 0]
+        }}
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Orb - Gold */}
+      <motion.div
+        className="absolute top-[20%] left-[10%] w-[450px] h-[450px] rounded-full opacity-[0.11]"
+        style={{
+          background: 'radial-gradient(circle, rgba(201, 166, 107, 0.7) 0%, rgba(212, 175, 55, 0.4) 40%, transparent 70%)',
+          filter: 'blur(45px)'
+        }}
+        animate={{
+          y: [0, -70, 0],
+          x: [0, 40, 0],
+          scale: [1, 1.25, 1]
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Orb - Warm Bronze */}
+      <motion.div
+        className="absolute bottom-[10%] right-[15%] w-[550px] h-[550px] rounded-full opacity-[0.1]"
+        style={{
+          background: 'radial-gradient(circle, rgba(160, 82, 45, 0.6) 0%, rgba(139, 69, 19, 0.3) 40%, transparent 70%)',
+          filter: 'blur(50px)'
+        }}
+        animate={{
+          y: [0, 90, 0],
+          x: [0, -50, 0],
+          scale: [1, 1.3, 1]
+        }}
+        transition={{
+          duration: 26,
           repeat: Infinity,
           ease: "easeInOut"
         }}
@@ -148,64 +205,82 @@ export const Story = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="relative border p-12 text-center group cursor-pointer overflow-hidden"
-              style={{ borderColor: 'var(--warm-gray)', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
+              className="relative border-2 p-12 text-center group cursor-pointer overflow-hidden"
+              style={{
+                borderColor: index === hoveredYear ? '#DC143C' : '#8B0000',
+                background: index === hoveredYear
+                  ? 'linear-gradient(135deg, #6B1C23 0%, #8B0000 100%)'
+                  : 'linear-gradient(135deg, #4A1419 0%, #6B1C23 100%)'
+              }}
               initial={{ opacity: 0, y: 60, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.5 + index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{
-                borderColor: 'var(--gold)',
-                y: -8,
-                boxShadow: '0 30px 60px -15px rgba(59, 13, 17, 0.25), 0 0 40px -10px rgba(201, 166, 107, 0.3)'
+                y: -8
               }}
+              onMouseEnter={() => setHoveredYear(index)}
+              onMouseLeave={() => setHoveredYear(null)}
             >
               {/* Icon with Rotation on Hover */}
               <motion.div
                 className="flex justify-center mb-6"
-                whileHover={{ scale: 1.15, rotate: 12 }}
+                animate={{
+                  scale: hoveredYear === index ? 1.15 : 1,
+                  rotate: hoveredYear === index ? 12 : 0
+                }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 {stat.icon}
               </motion.div>
 
-              {/* Value with Counter Effect */}
+              {/* Value - Gold Colors */}
               <motion.div
-                className="text-6xl font-light mb-4 group-hover:text-[var(--gold)] transition-colors duration-500"
+                className="text-6xl font-light mb-4"
                 style={{
                   fontFamily: "'Playfair Display', serif",
-                  color: 'var(--burgundy-deep)'
+                  color: hoveredYear === index ? '#FFD700' : '#C9A66B',
+                  textShadow: hoveredYear === index ? '0 0 20px rgba(255, 215, 0, 0.5)' : 'none'
                 }}
-                whileHover={{ scale: 1.05 }}
+                animate={{
+                  scale: hoveredYear === index ? 1.05 : 1
+                }}
+                transition={{ duration: 0.4 }}
               >
                 {stat.value}
               </motion.div>
 
-              {/* Label */}
+              {/* Label - Gold */}
               <div
                 className="text-sm uppercase tracking-[0.2em] font-light"
-                style={{ color: 'var(--burgundy)', opacity: 0.7 }}
+                style={{
+                  color: hoveredYear === index ? '#FFFFFF' : '#E8D5A8'
+                }}
               >
                 {stat.label}
               </div>
 
-              {/* Bottom gold line on hover */}
+              {/* Bottom gold line on hover - INSIDE ONLY */}
               <motion.div
-                className="absolute bottom-0 left-0 h-px"
-                style={{ backgroundColor: 'var(--gold)' }}
-                initial={{ width: '0%' }}
-                whileHover={{ width: '100%' }}
+                className="absolute bottom-0 left-0 h-[2px]"
+                style={{
+                  background: 'linear-gradient(90deg, #FFD700, #FFA500, #FFD700)'
+                }}
+                animate={{
+                  width: hoveredYear === index ? '100%' : '0%'
+                }}
                 transition={{ duration: 0.6 }}
               />
 
-              {/* Gold glow on hover */}
+              {/* Inner Glow Effect - CONTAINED INSIDE */}
               <motion.div
                 className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle at center, rgba(201, 166, 107, 0.15), transparent 70%)',
-                  opacity: 0
+                animate={{
+                  opacity: hoveredYear === index ? 1 : 0,
+                  boxShadow: hoveredYear === index
+                    ? 'inset 0 0 60px rgba(220, 20, 60, 0.3)'
+                    : 'inset 0 0 0px rgba(220, 20, 60, 0)'
                 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.5 }}
               />
             </motion.div>
           ))}

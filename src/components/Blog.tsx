@@ -2,17 +2,17 @@ import { useTranslation } from "../hooks/useTranslation";
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-// Clock Icon for Read Time
+// Clock Icon for Read Time - Bright Gold
 const ClockIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD700" strokeWidth="1.5">
     <circle cx="12" cy="12" r="10" />
     <path d="M12 6v6l4 2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
-// Arrow Icon
+// Arrow Icon - Bright Gold
 const ArrowIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD700" strokeWidth="1.5">
     <path d="M5 12h14m0 0l-7-7m7 7l-7 7" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
@@ -87,16 +87,74 @@ export const Blog = () => {
 
   return (
     <section ref={sectionRef} id="blog" className="py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
-      {/* Background decoration with animation */}
+      {/* Gold Shimmer Wave - Same as Story */}
       <motion.div
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] opacity-[0.03]"
-        style={{ background: 'radial-gradient(circle, var(--burgundy) 0%, transparent 70%)' }}
+        className="absolute inset-0 opacity-[0.14]"
+        style={{
+          background: 'linear-gradient(120deg, transparent 0%, rgba(201, 166, 107, 0.6) 45%, rgba(212, 175, 55, 0.4) 55%, transparent 100%)',
+          filter: 'blur(50px)'
+        }}
         animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0]
+          x: ['-100%', '200%']
         }}
         transition={{
-          duration: 15,
+          duration: 35,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+
+      {/* Burgundy Flow - Same as Story */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          background: 'linear-gradient(-60deg, transparent 0%, rgba(107, 28, 35, 0.5) 50%, transparent 100%)',
+          filter: 'blur(60px)'
+        }}
+        animate={{
+          x: ['100%', '-100%', '100%'],
+          y: [0, 60, 0]
+        }}
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Orb - Gold */}
+      <motion.div
+        className="absolute top-[20%] left-[10%] w-[450px] h-[450px] rounded-full opacity-[0.11]"
+        style={{
+          background: 'radial-gradient(circle, rgba(201, 166, 107, 0.7) 0%, rgba(212, 175, 55, 0.4) 40%, transparent 70%)',
+          filter: 'blur(45px)'
+        }}
+        animate={{
+          y: [0, -70, 0],
+          x: [0, 40, 0],
+          scale: [1, 1.25, 1]
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Orb - Warm Bronze */}
+      <motion.div
+        className="absolute bottom-[10%] right-[15%] w-[550px] h-[550px] rounded-full opacity-[0.1]"
+        style={{
+          background: 'radial-gradient(circle, rgba(160, 82, 45, 0.6) 0%, rgba(139, 69, 19, 0.3) 40%, transparent 70%)',
+          filter: 'blur(50px)'
+        }}
+        animate={{
+          y: [0, 90, 0],
+          x: [0, -50, 0],
+          scale: [1, 1.3, 1]
+        }}
+        transition={{
+          duration: 26,
           repeat: Infinity,
           ease: "easeInOut"
         }}
@@ -156,137 +214,141 @@ export const Blog = () => {
           </motion.p>
         </div>
 
-        {/* Blog Cards Grid - Premium Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Blog Cards Grid - Redesigned from Scratch */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article, index) => (
             <motion.article
               key={article.id}
               className="group cursor-pointer"
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.7, delay: 0.5 + index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
+              initial={{ opacity: 0, y: 60 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
               onMouseEnter={() => setHoveredId(article.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Card Container */}
               <motion.div
-                className="relative border overflow-hidden backdrop-blur-sm"
+                className="relative h-full flex flex-col overflow-hidden"
                 style={{
-                  borderColor: hoveredId === article.id ? 'var(--gold)' : 'rgba(201, 166, 107, 0.2)',
-                  backgroundColor: 'white'
+                  backgroundColor: '#2C0A0D',
+                  border: '1px solid rgba(201, 166, 107, 0.2)'
                 }}
                 whileHover={{
-                  y: -12,
-                  boxShadow: '0 40px 80px -15px rgba(59, 13, 17, 0.3), 0 0 60px -10px rgba(201, 166, 107, 0.4)'
+                  y: -6,
+                  borderColor: 'rgba(201, 166, 107, 0.5)'
                 }}
-                transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+                transition={{ duration: 0.3 }}
               >
-                {/* Cover Image */}
-                <div className="relative h-[280px] overflow-hidden">
+                {/* Image Section */}
+                <div className="relative h-[240px] overflow-hidden">
                   <motion.img
                     src={article.image}
                     alt={article.title}
                     className="w-full h-full object-cover"
-                    animate={{
-                      scale: hoveredId === article.id ? 1.12 : 1
-                    }}
-                    transition={{ duration: 0.7 }}
-                  />
-
-                  {/* Gradient Overlay */}
-                  <div
-                    className="absolute inset-0 transition-opacity duration-700"
                     style={{
-                      background: 'linear-gradient(180deg, transparent 0%, rgba(74, 14, 19, 0.7) 100%)',
-                      opacity: 0.6
+                      filter: 'brightness(0.75)'
                     }}
+                    whileHover={{
+                      scale: 1.05
+                    }}
+                    transition={{ duration: 0.5 }}
                   />
 
                   {/* Category Badge */}
                   <div
-                    className="absolute top-4 left-4 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] font-light border backdrop-blur-sm"
+                    className="absolute top-3 left-3 px-3 py-1"
                     style={{
-                      backgroundColor: 'rgba(212, 175, 55, 0.9)',
-                      borderColor: 'var(--gold-light)',
-                      color: 'white'
+                      backgroundColor: '#C9A66B',
+                      color: '#1A0508',
+                      fontSize: '9px',
+                      fontWeight: '600',
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase'
                     }}
                   >
                     {article.category}
                   </div>
-
-                  {/* Date Badge */}
-                  <div
-                    className="absolute bottom-4 right-4 px-3 py-1 text-[10px] uppercase tracking-[0.15em] font-light backdrop-blur-sm border"
-                    style={{
-                      backgroundColor: 'rgba(250, 247, 242, 0.9)',
-                      borderColor: 'var(--gold)',
-                      color: 'var(--burgundy-deep)'
-                    }}
-                  >
-                    {article.date}
-                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-8">
-                  {/* Read Time */}
-                  <div className="flex items-center gap-2 mb-4" style={{ color: 'var(--gold)' }}>
-                    <ClockIcon />
-                    <span className="text-xs uppercase tracking-[0.15em] font-light">
-                      {article.readTime} leitura
+                {/* Content Section */}
+                <div className="p-6 flex-1 flex flex-col">
+                  {/* Meta Info */}
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="flex items-center gap-1.5">
+                      <ClockIcon />
+                      <span style={{ color: '#E8D5A8', fontSize: '11px', fontWeight: '600', letterSpacing: '0.05em' }}>
+                        {article.readTime} leitura
+                      </span>
+                    </div>
+                    <span style={{ color: '#E8D5A8', fontSize: '11px', fontWeight: '600' }}>
+                      {article.date}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3
-                    className="text-2xl font-light mb-4 leading-tight tracking-wide transition-colors duration-500 group-hover:text-[var(--gold)]"
                     style={{
                       fontFamily: "'Playfair Display', serif",
-                      color: 'var(--burgundy-deep)'
+                      fontSize: '22px',
+                      fontWeight: '400',
+                      lineHeight: '1.3',
+                      color: '#F5E6B3',
+                      marginBottom: '12px'
                     }}
                   >
                     {article.title}
                   </h3>
 
                   {/* Excerpt */}
-                  <p
-                    className="text-sm font-light leading-loose mb-6"
+                  <span
                     style={{
-                      color: 'var(--burgundy)',
-                      opacity: 0.8
+                      color: '#c9a66b',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      lineHeight: '1.6',
+                      marginBottom: '16px',
+                      flex: 1
                     }}
                   >
                     {article.excerpt}
-                  </p>
+                  </span>
 
-                  {/* Read More Button */}
-                  <div className="flex items-center gap-2 group/btn">
+                  {/* Read More Link */}
+                  <motion.div
+                    className="flex items-center gap-2 mt-auto"
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <span
-                      className="text-xs uppercase tracking-[0.2em] font-light transition-colors duration-500 group-hover/btn:text-[var(--gold)]"
-                      style={{ color: 'var(--burgundy-deep)' }}
+                      style={{
+                        color: '#F5E6B3',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase'
+                      }}
                     >
                       {t.blog.readMore}
                     </span>
-                    <div className="transition-all duration-500 group-hover/btn:translate-x-2" style={{ color: 'var(--gold)' }}>
-                      <ArrowIcon />
-                    </div>
-                  </div>
-
-                  {/* Bottom gold line on hover */}
-                  <div
-                    className="absolute bottom-0 left-0 h-px transition-all duration-700"
-                    style={{
-                      backgroundColor: 'var(--gold)',
-                      width: '0%',
-                    }}
-                  />
+                    <ArrowIcon />
+                  </motion.div>
                 </div>
+
+                {/* Bottom Gold Accent */}
+                <motion.div
+                  className="absolute bottom-0 left-0"
+                  style={{
+                    height: '2px',
+                    backgroundColor: '#C9A66B',
+                    width: hoveredId === article.id ? '100%' : '0%'
+                  }}
+                  transition={{ duration: 0.4 }}
+                />
               </motion.div>
             </motion.article>
           ))}
         </div>
 
-        {/* View All Button - Premium */}
+        {/* View All Button - Clean & Readable */}
         <motion.div
           className="text-center mt-20"
           initial={{ opacity: 0, y: 30 }}
@@ -294,34 +356,47 @@ export const Blog = () => {
           transition={{ duration: 0.8, delay: 1 }}
         >
           <motion.button
-            className="group relative border-2 px-16 py-5 text-sm font-light uppercase tracking-[0.3em] overflow-hidden backdrop-blur-sm"
+            className="group relative px-12 py-4 overflow-hidden"
             style={{
-              borderColor: 'var(--gold)',
-              color: 'var(--burgundy-deep)',
-              backgroundColor: 'rgba(255, 255, 255, 0.5)',
-              boxShadow: '0 0 30px rgba(201, 166, 107, 0.2)'
+              background: 'rgba(201, 166, 107, 0.15)',
+              border: '1px solid rgba(201, 166, 107, 0.4)'
             }}
             whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 50px rgba(201, 166, 107, 0.5)'
+              backgroundColor: 'rgba(201, 166, 107, 0.25)',
+              borderColor: 'rgba(201, 166, 107, 0.6)',
+              y: -2
             }}
-            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.3 }}
           >
-            <span className="relative z-10 flex items-center gap-3 group-hover:text-white transition-colors duration-700">
-              Ver Todos os Artigos
-              <motion.span
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+            <div className="relative z-10 flex items-center gap-3">
+              <span
+                className="text-sm font-semibold uppercase tracking-[0.25em]"
+                style={{
+                  color: '#E8D5A8',
+                  fontFamily: "'Inter', sans-serif"
+                }}
               >
-                →
-              </motion.span>
-            </span>
-            <motion.div
-              className="absolute inset-0"
-              style={{ background: 'var(--gradient-gold)', translateX: '-100%' }}
-              whileHover={{ translateX: '0%' }}
-              transition={{ duration: 0.7 }}
-            />
+                Ver Todos os Artigos
+              </span>
+              <motion.svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#E8D5A8"
+                strokeWidth="2.5"
+                animate={{
+                  x: [0, 3, 0]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <path d="M5 12h14m0 0l-7-7m7 7l-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+              </motion.svg>
+            </div>
           </motion.button>
         </motion.div>
       </div>

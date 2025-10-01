@@ -59,158 +59,223 @@ export const Features = () => {
 
   return (
     <section ref={sectionRef} id="features" className="py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
-      {/* Background decoration with animation */}
+      {/* Elegant Flowing Waves - Burgundy */}
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-[0.04]"
-        style={{ background: 'radial-gradient(circle, var(--burgundy) 0%, transparent 70%)' }}
+        className="absolute inset-0 opacity-[0.18]"
+        style={{
+          background: 'linear-gradient(135deg, transparent 0%, rgba(107, 28, 35, 0.4) 50%, transparent 100%)',
+          filter: 'blur(40px)'
+        }}
         animate={{
-          scale: [1, 1.1, 1],
-          rotate: [0, 90, 0]
+          x: ['-50%', '50%', '-50%'],
+          y: [0, 50, 0]
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Elegant Flowing Waves - Gold */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          background: 'linear-gradient(-45deg, transparent 0%, rgba(201, 166, 107, 0.5) 50%, transparent 100%)',
+          filter: 'blur(50px)'
+        }}
+        animate={{
+          x: ['50%', '-50%', '50%'],
+          y: [0, -40, 0]
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Orb - Gold Top */}
+      <motion.div
+        className="absolute top-[10%] right-[15%] w-[500px] h-[500px] rounded-full opacity-[0.12]"
+        style={{
+          background: 'radial-gradient(circle, rgba(201, 166, 107, 0.7) 0%, rgba(212, 175, 55, 0.4) 40%, transparent 70%)',
+          filter: 'blur(40px)'
+        }}
+        animate={{
+          y: [0, -60, 0],
+          scale: [1, 1.2, 1]
         }}
         transition={{
           duration: 20,
           repeat: Infinity,
-          ease: "linear"
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Floating Orb - Burgundy Bottom */}
+      <motion.div
+        className="absolute bottom-[15%] left-[10%] w-[600px] h-[600px] rounded-full opacity-[0.1]"
+        style={{
+          background: 'radial-gradient(circle, rgba(107, 28, 35, 0.6) 0%, rgba(139, 0, 0, 0.3) 40%, transparent 70%)',
+          filter: 'blur(50px)'
+        }}
+        animate={{
+          y: [0, 80, 0],
+          scale: [1, 1.3, 1]
+        }}
+        transition={{
+          duration: 24,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Section Title */}
-        <div className="text-center mb-28">
+        {/* Asymmetric Layout: Title Left, Cards Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left Side - Title Section */}
           <motion.div
-            className="flex items-center justify-center gap-6 mb-8"
-            initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            className="lg:pr-12"
+            initial={{ opacity: 0, x: -60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9 }}
           >
             <motion.div
-              className="h-px w-24 gold-line"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
-            <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
-              Diferenciais
-            </span>
-            <motion.div
-              className="h-px w-24 gold-line"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
+              className="flex items-center gap-6 mb-8"
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.div
+                className="h-px w-20 gold-line"
+                initial={{ scaleX: 0 }}
+                animate={isInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              />
+              <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
+                Diferenciais
+              </span>
+            </motion.div>
+
+            <motion.h2
+              className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-8"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                color: 'var(--burgundy-deep)'
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.9, delay: 0.3 }}
+            >
+              {t.features.title}
+            </motion.h2>
+
+            <motion.p
+              className="text-lg font-light leading-relaxed"
+              style={{ color: 'var(--burgundy)', opacity: 0.8 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 0.8, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Cada vinho em nossa coleção é cuidadosamente selecionado para oferecer uma experiência única e memorável.
+            </motion.p>
           </motion.div>
 
-          <motion.h2
-            className="text-5xl md:text-7xl font-light leading-tight"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: 'var(--burgundy-deep)'
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.3 }}
-          >
-            {t.features.title}
-          </motion.h2>
-        </div>
-
-        {/* Feature Cards with Premium Animations */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="group relative"
-              initial={{ opacity: 0, y: 60, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.7, delay: 0.4 + index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {/* Card Container - Bordô Vivo */}
+          {/* Right Side - Compact Feature Cards */}
+          <div className="grid grid-cols-1 gap-8">
+            {features.map((feature, index) => (
               <motion.div
-                className="relative h-full border-2 p-14 backdrop-blur-sm cursor-pointer overflow-hidden"
-                style={{
-                  borderColor: hoveredIndex === index ? '#DC143C' : '#8B0000',
-                  background: hoveredIndex === index
-                    ? 'linear-gradient(135deg, #6B1C23 0%, #8B0000 100%)'
-                    : 'linear-gradient(135deg, #4A1419 0%, #6B1C23 100%)'
-                }}
-                whileHover={{
-                  y: -15,
-                  boxShadow: '0 40px 80px -15px rgba(220, 20, 60, 0.6), 0 0 60px -10px rgba(220, 20, 60, 0.5)'
-                }}
-                transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+                key={index}
+                className="group relative"
+                initial={{ opacity: 0, x: 60, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+                transition={{ duration: 0.7, delay: 0.6 + index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
-                {/* Icon with Animation */}
+                {/* Compact Card - Horizontal Layout */}
                 <motion.div
-                  className="mb-10 flex justify-center"
-                  animate={{
-                    scale: hoveredIndex === index ? 1.15 : 1,
-                    rotate: hoveredIndex === index ? 8 : 0,
-                    y: hoveredIndex === index ? -5 : 0
-                  }}
-                  transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
-                >
-                  {feature.icon}
-                </motion.div>
-
-                {/* Title - DOURADO */}
-                <motion.h3
-                  className="text-2xl font-light mb-5 text-center tracking-wide"
+                  className="relative border-2 p-8 backdrop-blur-sm cursor-pointer overflow-hidden flex items-center gap-6"
                   style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: hoveredIndex === index ? '#FFD700' : '#C9A66B',
-                    textShadow: hoveredIndex === index ? '0 0 20px rgba(255, 215, 0, 0.6)' : 'none'
+                    borderColor: hoveredIndex === index ? '#DC143C' : '#8B0000',
+                    background: hoveredIndex === index
+                      ? 'linear-gradient(135deg, #6B1C23 0%, #8B0000 100%)'
+                      : 'linear-gradient(135deg, #4A1419 0%, #6B1C23 100%)'
                   }}
-                  animate={{
-                    scale: hoveredIndex === index ? 1.05 : 1
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {feature.title}
-                </motion.h3>
-
-                {/* Description - DOURADO CLARO LEGÍVEL */}
-                <motion.p
-                  className="text-base leading-loose text-center font-light feature-description-gold"
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    color: hoveredIndex === index ? '#FFFFFF' : '#E8D5A8'
-                  }}
-                  animate={{
-                    opacity: 1
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {feature.description}
-                </motion.p>
-
-                {/* Bottom Gold Line - Grows on Hover */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[3px]"
-                  style={{
-                    background: 'linear-gradient(90deg, #FFD700, #FFA500, #FFD700)'
-                  }}
-                  animate={{
-                    width: hoveredIndex === index ? '100%' : '0%'
-                  }}
-                  transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
-                />
-
-                {/* Glow Effect on Hover - Red Glow */}
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  animate={{
-                    opacity: hoveredIndex === index ? 1 : 0,
-                    boxShadow: hoveredIndex === index
-                      ? '0 0 80px rgba(220, 20, 60, 0.4) inset'
-                      : '0 0 0px rgba(220, 20, 60, 0) inset'
+                  whileHover={{
+                    y: -8
                   }}
                   transition={{ duration: 0.5 }}
-                />
+                >
+                  {/* Icon - Smaller, Left Side */}
+                  <motion.div
+                    className="flex-shrink-0"
+                    animate={{
+                      scale: hoveredIndex === index ? 1.1 : 1,
+                      rotate: hoveredIndex === index ? 8 : 0
+                    }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div style={{ transform: 'scale(0.75)' }}>
+                      {feature.icon}
+                    </div>
+                  </motion.div>
+
+                  {/* Content - Right Side */}
+                  <div className="flex-1">
+                    <motion.h3
+                      className="text-xl font-light mb-2 tracking-wide"
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        color: hoveredIndex === index ? '#FFD700' : '#C9A66B',
+                        textShadow: hoveredIndex === index ? '0 0 15px rgba(255, 215, 0, 0.5)' : 'none'
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {feature.title}
+                    </motion.h3>
+
+                    <motion.p
+                      className="text-sm leading-relaxed font-light"
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        color: hoveredIndex === index ? '#FFFFFF' : '#E8D5A8'
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {feature.description}
+                    </motion.p>
+                  </div>
+
+                  {/* Bottom Gold Line - Grows on Hover - INSIDE ONLY */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-[2px]"
+                    style={{
+                      background: 'linear-gradient(90deg, #FFD700, #FFA500, #FFD700)'
+                    }}
+                    animate={{
+                      width: hoveredIndex === index ? '100%' : '0%'
+                    }}
+                    transition={{ duration: 0.6 }}
+                  />
+
+                  {/* Inner Glow Effect - CONTAINED INSIDE */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    animate={{
+                      opacity: hoveredIndex === index ? 1 : 0,
+                      boxShadow: hoveredIndex === index
+                        ? 'inset 0 0 60px rgba(220, 20, 60, 0.3)'
+                        : 'inset 0 0 0px rgba(220, 20, 60, 0)'
+                    }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
