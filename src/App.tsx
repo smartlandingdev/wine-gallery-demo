@@ -5,7 +5,6 @@ import { Gallery } from "./components/Gallery";
 import { Story } from "./components/Story";
 import { Testimonials } from "./components/Testimonials";
 import { Blog } from "./components/Blog";
-import { InteractiveFeatures } from "./components/Video";
 import { Partners } from "./components/Partners";
 import { FAQ } from "./components/FAQ";
 import { Newsletter } from "./components/Newsletter";
@@ -38,7 +37,6 @@ function App() {
         <Story />
         <Testimonials />
         <Blog />
-        <InteractiveFeatures />
         <Partners />
         <FAQ />
         <Newsletter />
