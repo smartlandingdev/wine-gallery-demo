@@ -14,7 +14,7 @@ export const Gallery = () => {
     {
       id: 1,
       name: "Château Margaux 2018",
-      image: "/images/gallery/wine2.png",
+      image: "https://ingavinhos.vtexassets.com/arquivos/ids/160018/Vinho-Quinta-do-Morgado-Tinto-Suave-1-0-L.png?v=637879652998670000",
       region: "Bordeaux",
       country: "França",
       price: "€ 850",
@@ -23,7 +23,7 @@ export const Gallery = () => {
     {
       id: 2,
       name: "Barolo Riserva 2017",
-      image: "/images/gallery/wine1.jpg",
+      image: "https://vinhosjolimont.vtexassets.com/arquivos/ids/156659-800-auto?v=638639203632370000&width=800&height=auto&aspect=true",
       region: "Piedmont",
       country: "Itália",
       price: "€ 420",
@@ -32,7 +32,7 @@ export const Gallery = () => {
     {
       id: 3,
       name: "Caymus Cabernet 2020",
-      image: "/images/gallery/wine3.png",
+      image: "https://cdn.sistemawbuy.com.br/arquivos/86047262e471906a773af26d54e02a3a/produtos/KIO6ZOU2/vinho_periquita_tinto-60b58516838ed_mini.png",
       region: "Napa Valley",
       country: "EUA",
       price: "$ 380",
@@ -41,7 +41,7 @@ export const Gallery = () => {
     {
       id: 4,
       name: "Dom Pérignon 2012",
-      image: "/images/gallery/wine4.png",
+      image: "https://phygital-files.mercafacil.com/catalogo/uploads/produto/vinho_brasileiro_tinto_seco_campo_largo_serra_ga_cha_garrafa_750ml_d878d0e6-b399-4afa-bc4f-189970a6acbc.png",
       region: "Champagne",
       country: "França",
       price: "€ 950",
@@ -50,7 +50,7 @@ export const Gallery = () => {
     {
       id: 5,
       name: "Opus One 2019",
-      image: "/images/gallery/wine5.png",
+      image: "https://casaflora.vtexassets.com/arquivos/ids/158774-800-auto?v=638881856928000000&width=800&height=auto&aspect=true",
       region: "Napa Valley",
       country: "EUA",
       price: "$ 680",
@@ -59,7 +59,7 @@ export const Gallery = () => {
     {
       id: 6,
       name: "Brunello di Montalcino 2018",
-      image: "/images/gallery/wine6.png",
+      image: "https://assets.betalabs.net/production/casageraldo/item-images/f9b0f5d1f30643628951cd05c5861f1f.png",
       region: "Tuscany",
       country: "Itália",
       price: "€ 520",
@@ -68,7 +68,7 @@ export const Gallery = () => {
     {
       id: 7,
       name: "Vega Sicilia Único 2015",
-      image: "/images/gallery/wine2.png",
+      image: "https://www.wine.com.br/cdn-cgi/image/f=png,h=611,q=99/assets-images/produtos/31526-01.png",
       region: "Ribera del Duero",
       country: "Espanha",
       price: "€ 780",
@@ -77,7 +77,7 @@ export const Gallery = () => {
     {
       id: 8,
       name: "Pingus 2018",
-      image: "/images/gallery/wine1.jpg",
+      image: "https://www.grandcru.com.br/media/catalog/product/cache/c654e2e74f68eb18cfab7a80423f7271/f/r/frpat0149a15.png",
       region: "Ribera del Duero",
       country: "Espanha",
       price: "€ 1,200",
@@ -251,32 +251,32 @@ export const Gallery = () => {
                   onMouseEnter={() => setHoveredId(wine.id)}
                   onMouseLeave={() => setHoveredId(null)}
                 >
-                  {/* 3D Card Container - Premium */}
+                  {/* 3D Card Container - Dark Premium */}
                   <motion.div
                     className="relative h-[520px] border overflow-hidden cursor-pointer"
                     style={{
-                      borderColor: hoveredId === wine.id ? 'var(--gold)' : 'rgba(201, 166, 107, 0.2)',
+                      borderColor: hoveredId === wine.id ? '#DC143C' : 'rgba(220, 20, 60, 0.3)',
                       background: hoveredId === wine.id
-                        ? 'linear-gradient(135deg, rgba(245, 243, 239, 1), rgba(232, 227, 218, 0.95))'
-                        : 'rgba(255, 255, 255, 0.8)',
+                        ? 'linear-gradient(135deg, #1A0A0C 0%, #2D0E12 100%)'
+                        : 'linear-gradient(135deg, #0C0C0C 0%, #1A0508 100%)',
                       backdropFilter: 'blur(10px)'
                     }}
                     whileHover={{
                       y: -12,
                       rotateY: 5,
-                      boxShadow: '0 50px 100px -20px rgba(59, 13, 17, 0.4), 0 0 80px -15px rgba(201, 166, 107, 0.5)'
+                      boxShadow: '0 50px 100px -20px rgba(220, 20, 60, 0.6), 0 0 80px -15px rgba(220, 20, 60, 0.4)'
                     }}
                     transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
                   >
-                    {/* Limited Edition Tag - Premium Gold */}
+                    {/* Limited Edition Tag - Red Premium */}
                     {wine.limited && (
                       <motion.div
                         className="absolute top-5 right-5 z-10 px-4 py-1.5 text-[9px] uppercase tracking-[0.25em] font-light border backdrop-blur-sm"
                         style={{
-                          backgroundColor: 'rgba(201, 166, 107, 0.95)',
+                          backgroundColor: '#DC143C',
                           color: 'white',
-                          borderColor: 'var(--gold-light)',
-                          boxShadow: '0 4px 15px rgba(201, 166, 107, 0.4)'
+                          borderColor: '#FF1744',
+                          boxShadow: '0 4px 15px rgba(220, 20, 60, 0.6), 0 0 25px rgba(220, 20, 60, 0.4)'
                         }}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -305,19 +305,19 @@ export const Gallery = () => {
                       />
                     </div>
 
-                    {/* Wine Details - Premium Design */}
+                    {/* Wine Details - Dark Premium Design */}
                     <motion.div
                       className="absolute bottom-0 left-0 right-0 p-7 backdrop-blur-md"
                       style={{
                         backgroundColor: hoveredId === wine.id
-                          ? 'rgba(59, 13, 17, 0.98)'
-                          : 'rgba(245, 243, 239, 0.95)',
-                        borderTop: hoveredId === wine.id ? '1px solid var(--gold)' : '1px solid transparent'
+                          ? 'rgba(45, 14, 18, 0.98)'
+                          : 'rgba(12, 12, 12, 0.95)',
+                        borderTop: hoveredId === wine.id ? '2px solid #DC143C' : '1px solid rgba(220, 20, 60, 0.2)'
                       }}
                       animate={{
                         backgroundColor: hoveredId === wine.id
-                          ? 'rgba(59, 13, 17, 0.98)'
-                          : 'rgba(245, 243, 239, 0.95)'
+                          ? 'rgba(45, 14, 18, 0.98)'
+                          : 'rgba(12, 12, 12, 0.95)'
                       }}
                       transition={{ duration: 0.5 }}
                     >
@@ -325,10 +325,11 @@ export const Gallery = () => {
                         className="text-xl font-light mb-2 tracking-wide"
                         style={{
                           fontFamily: "'Playfair Display', serif",
-                          color: hoveredId === wine.id ? 'var(--gold)' : 'var(--burgundy-deep)'
+                          color: hoveredId === wine.id ? '#FF1744' : '#F5F5F5',
+                          textShadow: hoveredId === wine.id ? '0 0 20px rgba(220, 20, 60, 0.5)' : 'none'
                         }}
                         animate={{
-                          color: hoveredId === wine.id ? 'var(--gold)' : 'var(--burgundy-deep)'
+                          color: hoveredId === wine.id ? '#FF1744' : '#F5F5F5'
                         }}
                       >
                         {wine.name}
@@ -338,8 +339,7 @@ export const Gallery = () => {
                         className="text-xs mb-4 font-light"
                         style={{
                           fontFamily: "'Inter', sans-serif",
-                          color: hoveredId === wine.id ? 'var(--gold-light)' : 'var(--burgundy)',
-                          opacity: 0.85
+                          color: hoveredId === wine.id ? '#FFB3C1' : 'rgba(245, 245, 245, 0.7)'
                         }}
                       >
                         {wine.region}, {wine.country}
@@ -350,7 +350,8 @@ export const Gallery = () => {
                           className="text-2xl font-light tracking-wide"
                           style={{
                             fontFamily: "'Playfair Display', serif",
-                            color: hoveredId === wine.id ? 'white' : 'var(--burgundy-deep)'
+                            color: hoveredId === wine.id ? '#FFFFFF' : 'rgba(245, 245, 245, 0.95)',
+                            textShadow: hoveredId === wine.id ? '0 0 15px rgba(255, 255, 255, 0.3)' : 'none'
                           }}
                           animate={{
                             scale: hoveredId === wine.id ? 1.05 : 1
@@ -363,18 +364,19 @@ export const Gallery = () => {
                         <motion.button
                           className="text-xs uppercase tracking-[0.2em] font-light flex items-center gap-2 border px-4 py-2"
                           style={{
-                            color: hoveredId === wine.id ? 'var(--gold)' : 'transparent',
-                            borderColor: hoveredId === wine.id ? 'var(--gold)' : 'transparent',
-                            backgroundColor: hoveredId === wine.id ? 'rgba(201, 166, 107, 0.1)' : 'transparent'
+                            color: hoveredId === wine.id ? '#DC143C' : 'transparent',
+                            borderColor: hoveredId === wine.id ? '#DC143C' : 'transparent',
+                            backgroundColor: hoveredId === wine.id ? 'rgba(220, 20, 60, 0.15)' : 'transparent'
                           }}
                           animate={{
                             opacity: hoveredId === wine.id ? 1 : 0,
                             x: hoveredId === wine.id ? 0 : -10
                           }}
                           whileHover={{
-                            backgroundColor: 'var(--gold)',
+                            backgroundColor: '#DC143C',
                             color: 'white',
-                            scale: 1.05
+                            scale: 1.05,
+                            boxShadow: '0 0 25px rgba(220, 20, 60, 0.6)'
                           }}
                           transition={{ duration: 0.3 }}
                         >

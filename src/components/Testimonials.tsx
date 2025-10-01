@@ -1,5 +1,6 @@
 import { useTranslation } from '../hooks/useTranslation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 // Quote SVG Icon
 const QuoteIcon = () => (
@@ -19,6 +20,8 @@ export const Testimonials = () => {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const testimonials = [
     {
@@ -88,179 +91,298 @@ export const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-32 relative overflow-hidden" style={{ background: 'var(--warm-gray)' }}>
+    <section ref={sectionRef} id="testimonials" className="py-32 relative overflow-hidden" style={{ background: 'var(--warm-gray)' }}>
+      {/* Floating Gold Accent with Animation */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl opacity-15"
+        style={{ background: 'var(--gradient-glow)' }}
+        animate={{
+          scale: [1, 1.3, 1],
+          x: [0, 50, 0],
+          y: [0, -30, 0]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
       {/* Background Decorative Elements - Cork & Glass Subtle Pattern */}
-      <div className="absolute top-20 left-10 opacity-[0.03] animate-float">
+      <motion.div
+        className="absolute top-20 left-10 opacity-[0.03]"
+        animate={{
+          y: [0, -15, 0],
+          rotate: [0, 5, 0]
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
         <svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="var(--burgundy)" strokeWidth="0.5">
           <circle cx="24" cy="24" r="20" />
           <circle cx="24" cy="24" r="16" />
           <circle cx="24" cy="24" r="12" />
         </svg>
-      </div>
+      </motion.div>
 
-      <div className="absolute bottom-32 right-20 opacity-[0.03] animate-float" style={{ animationDelay: '2s' }}>
+      <motion.div
+        className="absolute bottom-32 right-20 opacity-[0.03]"
+        animate={{
+          y: [0, 15, 0],
+          rotate: [0, -5, 0]
+        }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      >
         <svg width="100" height="100" viewBox="0 0 48 48" fill="none" stroke="var(--burgundy)" strokeWidth="0.5">
           <path d="M14 8 L34 8 L30 24 C30 32 27 36 24 36 C21 36 18 32 18 24 Z" />
           <path d="M24 36 L24 44 M16 44 L32 44" />
         </svg>
-      </div>
+      </motion.div>
 
-      <div className="absolute top-1/2 right-10 opacity-[0.02]">
+      <motion.div
+        className="absolute top-1/2 right-10 opacity-[0.02]"
+        animate={{
+          rotate: [0, 360],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      >
         <svg width="200" height="200" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" strokeWidth="0.3">
           <circle cx="24" cy="24" r="20" />
           <path d="M24 4 L24 44 M4 24 L44 24" />
           <circle cx="24" cy="24" r="15" />
           <circle cx="24" cy="24" r="10" />
         </svg>
-      </div>
+      </motion.div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-20">
-          <div className="flex items-center justify-center gap-6 mb-8 animate-fade-in">
-            <div className="h-px w-20 gold-line" />
+          <motion.div
+            className="flex items-center justify-center gap-6 mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="h-px w-24 gold-line"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
             <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
               Experiências
             </span>
-            <div className="h-px w-20 gold-line" />
-          </div>
+            <motion.div
+              className="h-px w-24 gold-line"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
+          </motion.div>
 
-          <h2
-            className="text-5xl md:text-7xl font-light leading-tight mb-6 animate-fade-in-up"
+          <motion.h2
+            className="text-5xl md:text-7xl font-light leading-tight mb-6"
             style={{
               fontFamily: "'Playfair Display', serif",
-              color: 'var(--burgundy-deep)',
-              animationDelay: '0.1s'
+              color: 'var(--burgundy-deep)'
             }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.3 }}
           >
             {t.testimonials.title}
-          </h2>
+          </motion.h2>
 
-          <p
-            className="text-lg font-light leading-loose max-w-2xl mx-auto animate-fade-in-up"
+          <motion.p
+            className="text-lg font-light leading-loose max-w-2xl mx-auto"
             style={{
               color: 'var(--burgundy)',
-              opacity: 0.8,
-              animationDelay: '0.2s'
+              opacity: 0.8
             }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 0.8, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             {t.testimonials.subtitle}
-          </p>
+          </motion.p>
         </div>
 
         {/* Carousel Container */}
-        <div className="relative animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          {/* Navigation Buttons */}
-          <button
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          {/* Navigation Buttons - Premium Style */}
+          <motion.button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:bg-[var(--gold)] hover:border-[var(--gold)] group -translate-x-20 hidden lg:flex"
-            style={{ borderColor: 'var(--gold)', backgroundColor: 'rgba(250, 247, 242, 0.9)' }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-md group -translate-x-20 hidden lg:flex"
+            style={{ borderColor: 'var(--gold)', backgroundColor: 'rgba(12, 12, 12, 0.8)' }}
+            whileHover={{
+              scale: 1.1,
+              backgroundColor: 'var(--gold)',
+              boxShadow: '0 0 30px rgba(201, 166, 107, 0.6)'
+            }}
+            whileTap={{ scale: 0.9 }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--burgundy)" strokeWidth="1" className="group-hover:stroke-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="group-hover:stroke-white transition-colors">
               <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:bg-[var(--gold)] hover:border-[var(--gold)] group translate-x-20 hidden lg:flex"
-            style={{ borderColor: 'var(--gold)', backgroundColor: 'rgba(250, 247, 242, 0.9)' }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 border flex items-center justify-center backdrop-blur-md group translate-x-20 hidden lg:flex"
+            style={{ borderColor: 'var(--gold)', backgroundColor: 'rgba(12, 12, 12, 0.8)' }}
+            whileHover={{
+              scale: 1.1,
+              backgroundColor: 'var(--gold)',
+              boxShadow: '0 0 30px rgba(201, 166, 107, 0.6)'
+            }}
+            whileTap={{ scale: 0.9 }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--burgundy)" strokeWidth="1" className="group-hover:stroke-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="group-hover:stroke-white transition-colors">
               <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </button>
+          </motion.button>
 
-          {/* Testimonial Card */}
-          <div className="relative border bg-white/60 backdrop-blur-sm p-16 min-h-[420px] flex flex-col items-center justify-center overflow-hidden"
-            style={{ borderColor: 'var(--gold)' }}
+          {/* Testimonial Card with Premium Effects */}
+          <motion.div
+            className="relative border backdrop-blur-md p-16 min-h-[420px] flex flex-col items-center justify-center overflow-hidden"
+            style={{
+              borderColor: 'var(--gold)',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 243, 239, 0.85))',
+              boxShadow: '0 25px 60px -15px rgba(59, 13, 17, 0.2)'
+            }}
+            whileHover={{
+              boxShadow: '0 35px 80px -15px rgba(59, 13, 17, 0.3), 0 0 60px -10px rgba(201, 166, 107, 0.3)'
+            }}
           >
             {/* Large Quote Icon Background */}
-            <div className="absolute top-8 left-8">
-              <QuoteIcon />
-            </div>
-
-            {/* Content - Animated */}
-            <div
-              key={currentIndex}
-              className="text-center max-w-3xl animate-fade-in"
+            <motion.div
+              className="absolute top-8 left-8"
+              animate={{ rotate: [0, 5, 0], scale: [1, 1.05, 1] }}
+              transition={{ duration: 4, repeat: Infinity }}
             >
-              {/* Circular Photo with Gold Border */}
-              <div className="mb-8 flex justify-center">
-                <div className="relative">
-                  <div
-                    className="absolute inset-0 rounded-full blur-md"
-                    style={{
-                      background: 'linear-gradient(135deg, var(--gold), var(--burgundy))',
-                      transform: 'scale(1.1)'
-                    }}
-                  />
-                  <img
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
-                    className="relative w-24 h-24 rounded-full object-cover border-4"
-                    style={{ borderColor: 'var(--gold)' }}
-                  />
-                </div>
-              </div>
+              <QuoteIcon />
+            </motion.div>
 
-              {/* Stars */}
-              <div className="flex justify-center gap-1 mb-6">
-                {renderStars(testimonials[currentIndex].rating)}
-              </div>
-
-              {/* Comment - Styled Quote */}
-              <p
-                className="text-xl md:text-2xl font-light italic leading-relaxed mb-8"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: 'var(--burgundy-deep)'
-                }}
+            {/* Content - Animated with AnimatePresence */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                className="text-center max-w-3xl"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -30, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
               >
-                "{testimonials[currentIndex].comment}"
-              </p>
+                {/* Circular Photo with Gold Border & Glow */}
+                <div className="mb-8 flex justify-center">
+                  <motion.div
+                    className="relative"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 rounded-full blur-lg"
+                      style={{
+                        background: 'linear-gradient(135deg, var(--gold), var(--burgundy))',
+                        transform: 'scale(1.15)'
+                      }}
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    />
+                    <img
+                      src={testimonials[currentIndex].image}
+                      alt={testimonials[currentIndex].name}
+                      className="relative w-28 h-28 rounded-full object-cover border-4"
+                      style={{ borderColor: 'var(--gold)' }}
+                    />
+                  </motion.div>
+                </div>
 
-              {/* Name & Role */}
-              <div className="border-t pt-6" style={{ borderColor: 'var(--gold)', opacity: 0.3 }}>
-                <h4
-                  className="text-lg font-light tracking-wide mb-1"
+                {/* Stars with Shimmer */}
+                <motion.div
+                  className="flex justify-center gap-1 mb-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {renderStars(testimonials[currentIndex].rating)}
+                </motion.div>
+
+                {/* Comment - Styled Quote */}
+                <motion.p
+                  className="text-xl md:text-2xl font-light italic leading-relaxed mb-10"
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: 'var(--burgundy-deep)'
                   }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
                 >
-                  {testimonials[currentIndex].name}
-                </h4>
-                <p
-                  className="text-sm uppercase tracking-[0.2em] font-light"
-                  style={{
-                    color: 'var(--gold)'
-                  }}
-                >
-                  {testimonials[currentIndex].role}
-                </p>
-              </div>
-            </div>
-          </div>
+                  "{testimonials[currentIndex].comment}"
+                </motion.p>
 
-          {/* Dots Navigation */}
+                {/* Name & Role */}
+                <motion.div
+                  className="border-t pt-6"
+                  style={{
+                    borderColor: 'var(--gold)',
+                    borderImage: 'linear-gradient(90deg, transparent, var(--gold), transparent) 1'
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <h4
+                    className="text-xl font-light tracking-wide mb-2"
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      color: 'var(--burgundy-deep)'
+                    }}
+                  >
+                    {testimonials[currentIndex].name}
+                  </h4>
+                  <p
+                    className="text-xs uppercase tracking-[0.25em] font-light"
+                    style={{ color: 'var(--gold)' }}
+                  >
+                    {testimonials[currentIndex].role}
+                  </p>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Dots Navigation - Premium with Glow */}
           <div className="flex justify-center gap-3 mt-10">
             {testimonials.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className="transition-all duration-500"
+                className="transition-all duration-500 cursor-pointer"
                 style={{
                   width: currentIndex === index ? '40px' : '10px',
                   height: '10px',
                   backgroundColor: currentIndex === index ? 'var(--gold)' : 'var(--burgundy)',
                   opacity: currentIndex === index ? 1 : 0.3,
-                  borderRadius: '5px'
+                  borderRadius: '5px',
+                  boxShadow: currentIndex === index ? '0 0 15px rgba(201, 166, 107, 0.6)' : 'none'
                 }}
+                whileHover={{
+                  scale: 1.2,
+                  opacity: 0.8,
+                  boxShadow: '0 0 10px rgba(201, 166, 107, 0.4)'
+                }}
+                whileTap={{ scale: 0.9 }}
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

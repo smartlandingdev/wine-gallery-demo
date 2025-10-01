@@ -45,33 +45,41 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - SEMPRE DOURADO */}
           <motion.div
-            className="text-2xl font-light tracking-wider"
+            className="text-2xl font-light tracking-wider logo-gold"
             style={{
               fontFamily: "'Playfair Display', serif",
-              color: scrolled ? 'var(--gold)' : 'var(--burgundy-deep)'
+              color: '#C9A66B !important',
+              textShadow: scrolled ? '0 0 20px rgba(201, 166, 107, 0.5)' : 'none'
             }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{
+              scale: 1.05,
+              textShadow: '0 0 30px rgba(201, 166, 107, 0.8)'
+            }}
           >
             Wine Gallery
           </motion.div>
 
-          {/* Nav Links */}
+          {/* Nav Links - SEMPRE DOURADO */}
           <div className="hidden md:flex items-center gap-12">
             {['Coleção', 'História', 'Blog', 'Contato'].map((item, i) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm font-light uppercase tracking-[0.15em] relative group"
+                className="text-sm font-light uppercase tracking-[0.15em] relative group nav-link-gold"
                 style={{
-                  color: scrolled ? 'var(--gold-light)' : 'var(--burgundy)',
+                  color: '#C9A66B !important',
                   transition: 'color 0.3s'
                 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * i }}
-                whileHover={{ y: -2 }}
+                whileHover={{
+                  y: -2,
+                  color: '#D4AF37',
+                  textShadow: '0 0 15px rgba(201, 166, 107, 0.6)'
+                }}
               >
                 {item}
                 <motion.div
@@ -84,16 +92,22 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
             ))}
           </div>
 
-          {/* Language Toggle - Compact */}
+          {/* Language Toggle - SEMPRE DOURADO */}
           <motion.button
             onClick={toggleLanguage}
-            className="border px-3 py-1.5 text-xs font-light uppercase tracking-[0.2em] transition-all duration-500"
+            className="border px-3 py-1.5 text-xs font-light uppercase tracking-[0.2em] transition-all duration-500 btn-lang-gold"
             style={{
-              borderColor: scrolled ? 'var(--gold)' : 'var(--gold)',
-              color: scrolled ? 'var(--gold)' : 'var(--burgundy-deep)',
-              backgroundColor: scrolled ? 'transparent' : 'rgba(255,255,255,0.5)'
+              borderColor: '#C9A66B',
+              color: '#C9A66B !important',
+              backgroundColor: scrolled ? 'rgba(201, 166, 107, 0.1)' : 'rgba(255,255,255,0.3)'
             }}
-            whileHover={{ scale: 1.05, backgroundColor: 'var(--gold)', color: 'white' }}
+            whileHover={{
+              scale: 1.05,
+              backgroundColor: '#C9A66B',
+              color: 'white',
+              borderColor: '#C9A66B',
+              boxShadow: '0 0 20px rgba(201, 166, 107, 0.5)'
+            }}
             whileTap={{ scale: 0.95 }}
           >
             {language === 'en' ? 'PT' : 'EN'}
@@ -101,10 +115,10 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
         </div>
       </motion.nav>
 
-    <header className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'var(--off-white)' }}>
+    <header className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'var(--off-white)', zIndex: 1 }}>
       {/* Background with Advanced Parallax */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
         style={{ y: yBg }}
       >
         {/* Video Background - Premium */}
@@ -141,8 +155,8 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
           }}
         />
 
-        {/* Gradient Overlay Premium */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--off-white)]/95 via-[var(--off-white)]/30 to-[var(--off-white)]/90" />
+        {/* Gradient Overlay Premium - Preto no topo, transparente embaixo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/20 to-transparent" />
 
         {/* Floating Gold Glow */}
         <motion.div
@@ -164,7 +178,7 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
 
       {/* Main Content with Advanced Parallax */}
       <motion.div
-        className="relative z-10 text-center max-w-5xl mx-auto px-6"
+        className="relative z-50 text-center max-w-5xl mx-auto px-6 pt-32"
         style={{
           y: ySmooth,
           opacity: opacity,
@@ -173,10 +187,10 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
       >
         {/* Badge - 25 Anos */}
         <motion.div
-          className="inline-flex items-center gap-3 border px-6 py-2 mb-12 backdrop-blur-sm"
+          className="inline-flex items-center gap-3 border px-6 py-3 mb-16 backdrop-blur-md"
           style={{
             borderColor: 'var(--gold)',
-            backgroundColor: 'rgba(245, 243, 239, 0.6)'
+            backgroundColor: 'rgba(245, 243, 239, 0.8)'
           }}
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -216,7 +230,7 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
 
         {/* Title - Ultra Elegant */}
         <motion.h1
-          className="text-7xl md:text-[8rem] lg:text-[10rem] font-light mb-12 leading-[0.9] tracking-tighter"
+          className="text-6xl md:text-[7rem] lg:text-[9rem] font-light mb-10 leading-[0.9] tracking-tighter"
           style={{
             fontFamily: "'Playfair Display', serif",
             color: 'var(--burgundy-deep)',
@@ -231,7 +245,7 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
 
         {/* Subtitle - Espaço Generoso */}
         <motion.p
-          className="text-lg md:text-2xl mb-24 leading-relaxed max-w-3xl mx-auto font-light"
+          className="text-lg md:text-xl mb-16 leading-relaxed max-w-3xl mx-auto font-light"
           style={{
             fontFamily: "'Inter', sans-serif",
             color: 'var(--burgundy)',
@@ -247,12 +261,13 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
         {/* CTA - Glow Dourado Premium */}
         <motion.button
           onClick={onLearnMoreClick}
-          className="group relative border-2 px-16 py-5 text-sm font-light uppercase tracking-[0.3em] overflow-hidden backdrop-blur-sm"
+          className="group relative border-2 px-16 py-5 text-sm font-light uppercase tracking-[0.3em] overflow-hidden backdrop-blur-sm mb-24"
           style={{
             borderColor: 'var(--gold)',
             color: 'var(--burgundy-deep)',
-            backgroundColor: 'rgba(245, 243, 239, 0.5)',
-            boxShadow: '0 0 40px rgba(201, 166, 107, 0.3)'
+            backgroundColor: 'rgba(245, 243, 239, 0.8)',
+            boxShadow: '0 0 40px rgba(201, 166, 107, 0.3)',
+            zIndex: 100
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

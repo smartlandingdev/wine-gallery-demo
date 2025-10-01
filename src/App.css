@@ -2,17 +2,18 @@
 
 /* Custom CSS Variables - Ultra-Premium Wine Palette */
 :root {
-  /* Core Colors - Luxo Absoluto */
-  --burgundy-deep: #3B0D11;
-  --burgundy: #6B1C23;
-  --burgundy-rich: #8B2635;
+  /* Core Colors - Luxo Absoluto com Melhor Contraste */
+  --burgundy-deep: #2A0A0D;
+  --burgundy: #4A1419;
+  --burgundy-text: #2D0E12;
+  --burgundy-rich: #6B1C23;
   --gold: #C9A66B;
   --gold-dark: #A68A5A;
   --gold-light: #E8D5A8;
   --gold-metallic: #D4AF37;
-  --off-white: #F5F3EF;
-  --warm-gray: #E8E3DA;
-  --stone: #D4CEC4;
+  --off-white: #FFFCF8;
+  --warm-gray: #F8F5F0;
+  --stone: #EBE7E0;
   --charcoal: #0C0C0C;
 
   /* Premium Gradients */
@@ -21,6 +22,11 @@
   --gradient-luxury: linear-gradient(135deg, #0C0C0C 0%, #3B0D11 50%, #6B1C23 100%);
   --gradient-shimmer: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.3), transparent);
   --gradient-glow: radial-gradient(circle, rgba(201, 166, 107, 0.4), transparent);
+
+  /* Premium Textures */
+  --texture-wood: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 Q 50 25 100 0 L 100 5 Q 50 30 0 5 Z' fill='%23C9A66B' opacity='0.02'/%3E%3C/svg%3E");
+  --texture-cork: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1' fill='%236B1C23' opacity='0.03'/%3E%3Ccircle cx='50' cy='30' r='1' fill='%236B1C23' opacity='0.03'/%3E%3Ccircle cx='30' cy='50' r='1' fill='%236B1C23' opacity='0.03'/%3E%3C/svg%3E");
+  --texture-linen: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L 40 40 M 40 0 L 0 40' stroke='%23C9A66B' stroke-width='0.5' opacity='0.02'/%3E%3C/svg%3E");
 }
 
 /* Smooth scrolling */
@@ -30,12 +36,118 @@ html {
 }
 
 body {
-  background: var(--off-white);
-  color: var(--burgundy-deep);
+  background: #FFFCF8;
+  background-image: var(--texture-linen);
+  color: #2D0E12;
   font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Melhorar legibilidade de textos - Contraste Perfeito */
+section p:not(.subtitle):not([class*="text-"]),
+article p:not(.subtitle) {
+  color: #1A0508 !important;
+}
+
+/* Títulos com DOURADO BRILHANTE */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gold) !important;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(201, 166, 107, 0.3);
+}
+
+/* Títulos grandes com mais brilho */
+h1, h2 {
+  background: linear-gradient(135deg, #C9A66B 0%, #D4AF37 50%, #C9A66B 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Subtítulos com DOURADO BRILHANTE */
+p.text-lg,
+p.text-xl,
+p.text-2xl,
+.subtitle,
+section > div > p:first-of-type {
+  color: var(--gold) !important;
+  text-shadow: 0 1px 15px rgba(201, 166, 107, 0.2);
+  font-weight: 300;
+}
+
+/* Descrições e textos normais em preto */
+.text-base:not(.subtitle),
+.text-sm,
+.text-xs {
+  color: #2D0E12 !important;
+  text-shadow: none;
+}
+
+/* Header Navigation - Force Gold Color ALWAYS */
+nav .logo-gold,
+nav .nav-link-gold,
+nav .btn-lang-gold,
+nav a,
+nav button {
+  color: #C9A66B !important;
+}
+
+nav .logo-gold:hover,
+nav .nav-link-gold:hover {
+  color: #D4AF37 !important;
+}
+
+/* Features Section - Force Gold Color on Descriptions */
+#features .feature-description-gold,
+#features p {
+  color: #E8D5A8 !important;
+}
+
+#features h3 {
+  color: #C9A66B !important;
+}
+
+/* Story Section - Force All Text Gold */
+#story h3,
+#story p,
+#story div[class*="text-"] {
+  color: #C9A66B !important;
+}
+
+#story p {
+  color: #E8D5A8 !important;
+}
+
+/* Premium Texture Layers */
+.texture-wood-overlay {
+  position: relative;
+}
+
+.texture-wood-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--texture-wood);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.texture-cork-overlay {
+  position: relative;
+}
+
+.texture-cork-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--texture-cork);
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 /* Premium Typography Scale */

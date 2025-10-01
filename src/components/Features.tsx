@@ -126,18 +126,18 @@ export const Features = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Card Container */}
+              {/* Card Container - Bordô Vivo */}
               <motion.div
-                className="relative h-full border p-14 backdrop-blur-sm cursor-pointer"
+                className="relative h-full border-2 p-14 backdrop-blur-sm cursor-pointer overflow-hidden"
                 style={{
-                  borderColor: hoveredIndex === index ? 'var(--gold)' : 'rgba(201, 166, 107, 0.2)',
+                  borderColor: hoveredIndex === index ? '#DC143C' : '#8B0000',
                   background: hoveredIndex === index
-                    ? 'linear-gradient(135deg, rgba(245, 243, 239, 0.98), rgba(232, 227, 218, 0.95))'
-                    : 'rgba(255, 255, 255, 0.5)'
+                    ? 'linear-gradient(135deg, #6B1C23 0%, #8B0000 100%)'
+                    : 'linear-gradient(135deg, #4A1419 0%, #6B1C23 100%)'
                 }}
                 whileHover={{
                   y: -15,
-                  boxShadow: '0 40px 80px -15px rgba(59, 13, 17, 0.25), 0 0 60px -10px rgba(201, 166, 107, 0.4)'
+                  boxShadow: '0 40px 80px -15px rgba(220, 20, 60, 0.6), 0 0 60px -10px rgba(220, 20, 60, 0.5)'
                 }}
                 transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
               >
@@ -154,15 +154,15 @@ export const Features = () => {
                   {feature.icon}
                 </motion.div>
 
-                {/* Title */}
+                {/* Title - DOURADO */}
                 <motion.h3
                   className="text-2xl font-light mb-5 text-center tracking-wide"
                   style={{
                     fontFamily: "'Playfair Display', serif",
-                    color: hoveredIndex === index ? 'var(--gold)' : 'var(--burgundy-deep)'
+                    color: hoveredIndex === index ? '#FFD700' : '#C9A66B',
+                    textShadow: hoveredIndex === index ? '0 0 20px rgba(255, 215, 0, 0.6)' : 'none'
                   }}
                   animate={{
-                    color: hoveredIndex === index ? 'var(--gold)' : 'var(--burgundy-deep)',
                     scale: hoveredIndex === index ? 1.05 : 1
                   }}
                   transition={{ duration: 0.4 }}
@@ -170,52 +170,26 @@ export const Features = () => {
                   {feature.title}
                 </motion.h3>
 
-                {/* Description */}
+                {/* Description - DOURADO CLARO LEGÍVEL */}
                 <motion.p
-                  className="text-sm leading-loose text-center font-light"
+                  className="text-base leading-loose text-center font-light feature-description-gold"
                   style={{
                     fontFamily: "'Inter', sans-serif",
-                    color: 'var(--burgundy)'
+                    color: hoveredIndex === index ? '#FFFFFF' : '#E8D5A8'
                   }}
                   animate={{
-                    opacity: hoveredIndex === index ? 0 : 0.75,
-                    y: hoveredIndex === index ? -15 : 0
+                    opacity: 1
                   }}
                   transition={{ duration: 0.4 }}
                 >
                   {feature.description}
                 </motion.p>
 
-                {/* Hover Detail - Premium Reveal */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center p-14"
-                  animate={{
-                    opacity: hoveredIndex === index ? 1 : 0,
-                    pointerEvents: hoveredIndex === index ? 'auto' : 'none'
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <motion.p
-                    className="text-base leading-loose text-center font-light italic"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: 'var(--burgundy-deep)'
-                    }}
-                    initial={{ y: 20 }}
-                    animate={{
-                      y: hoveredIndex === index ? 0 : 20
-                    }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                  >
-                    {feature.detail}
-                  </motion.p>
-                </motion.div>
-
                 {/* Bottom Gold Line - Grows on Hover */}
                 <motion.div
-                  className="absolute bottom-0 left-0 h-[2px]"
+                  className="absolute bottom-0 left-0 h-[3px]"
                   style={{
-                    background: 'var(--gradient-gold)'
+                    background: 'linear-gradient(90deg, #FFD700, #FFA500, #FFD700)'
                   }}
                   animate={{
                     width: hoveredIndex === index ? '100%' : '0%'
@@ -223,14 +197,14 @@ export const Features = () => {
                   transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
                 />
 
-                {/* Glow Effect on Hover */}
+                {/* Glow Effect on Hover - Red Glow */}
                 <motion.div
-                  className="absolute inset-0 pointer-events-none rounded-sm"
+                  className="absolute inset-0 pointer-events-none"
                   animate={{
                     opacity: hoveredIndex === index ? 1 : 0,
                     boxShadow: hoveredIndex === index
-                      ? '0 0 50px rgba(201, 166, 107, 0.3) inset'
-                      : '0 0 0px rgba(201, 166, 107, 0) inset'
+                      ? '0 0 80px rgba(220, 20, 60, 0.4) inset'
+                      : '0 0 0px rgba(220, 20, 60, 0) inset'
                   }}
                   transition={{ duration: 0.5 }}
                 />
