@@ -46,8 +46,8 @@ body {
 }
 
 /* Melhorar legibilidade de textos - Contraste Perfeito */
-section p:not(.subtitle):not([class*="text-"]),
-article p:not(.subtitle) {
+section p:not(.subtitle):not([class*="text-"]):not(.text-gold),
+article p:not(.subtitle):not(.text-gold) {
   color: #1A0508 !important;
 }
 
@@ -121,6 +121,12 @@ nav .nav-link-gold:hover {
 
 #story p {
   color: #E8D5A8 !important;
+}
+
+/* Partners Section - Force All Text Gold */
+#partners h3,
+#partners p {
+  color: #C9A66B !important;
 }
 
 /* Premium Texture Layers */

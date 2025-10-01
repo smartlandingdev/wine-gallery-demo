@@ -31,7 +31,6 @@ const WineGlassSmall = () => (
 export const FAQ = () => {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(0); // First item open by default
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
@@ -146,28 +145,17 @@ export const FAQ = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Neumorphic Card with Premium Transitions */}
+              {/* Card with Testimonials Style */}
               <motion.div
                 className="relative overflow-hidden"
-                animate={{
-                  background: openIndex === index
-                    ? 'linear-gradient(145deg, #ffffff, #f5f2ed)'
-                    : '#FAF7F2'
-                }}
                 style={{
-                  boxShadow: openIndex === index
-                    ? 'inset 4px 4px 8px rgba(107, 28, 35, 0.08), inset -4px -4px 8px rgba(255, 255, 255, 0.9)'
-                    : hoveredIndex === index
-                    ? '6px 6px 12px rgba(107, 28, 35, 0.1), -6px -6px 12px rgba(255, 255, 255, 0.9)'
-                    : '4px 4px 8px rgba(107, 28, 35, 0.08), -4px -4px 8px rgba(255, 255, 255, 0.9)',
-                  border: openIndex === index ? '1px solid var(--gold)' : '1px solid transparent'
+                  background: 'linear-gradient(135deg, rgba(107, 28, 35, 0.03) 0%, rgba(201, 166, 107, 0.02) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  border: openIndex === index ? '1px solid rgba(201, 166, 107, 0.3)' : '1px solid rgba(201, 166, 107, 0.15)'
                 }}
                 whileHover={{
-                  y: -4,
-                  boxShadow: '8px 8px 16px rgba(107, 28, 35, 0.12), -8px -8px 16px rgba(255, 255, 255, 1)'
+                  y: -4
                 }}
                 transition={{ duration: 0.4 }}
               >

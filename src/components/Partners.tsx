@@ -142,7 +142,7 @@ export const Partners = () => {
                       className="text-xl font-light mb-2 tracking-wide"
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        color: '#E8D5A8'
+                        color: '#D4AF37'
                       }}
                       whileHover={{
                         color: '#FFD700'
@@ -152,15 +152,9 @@ export const Partners = () => {
                       {partner.name}
                     </motion.h3>
 
-                    <span
-                      className="text-xs uppercase tracking-[0.2em] font-bold"
-                      style={{
-                        color: '#F5E6B3',
-                        fontWeight: '700'
-                      }}
-                    >
+                    <p className="text-gold" style={{ color: '#D4AF37 !important', fontSize: '14px', fontWeight: '300' }}>
                       {partner.region}
-                    </span>
+                    </p>
                   </div>
 
                   {/* Top Border on Hover */}
@@ -219,7 +213,7 @@ export const Partners = () => {
                   <CheckIcon />
                   <span
                     className="text-sm font-light uppercase tracking-[0.15em]"
-                    style={{ color: 'var(--burgundy-deep)' }}
+                    style={{ color: '#C9A66B' }}
                   >
                     {benefit.text}
                   </span>
