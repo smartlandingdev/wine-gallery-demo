@@ -38,9 +38,7 @@ function App() {
         <Testimonials />
         <Blog />
         <Partners />
-        <FAQ />
         <Newsletter />
-        <Contact />
         <Footer />
         <FloatingWhatsApp />
       </div>

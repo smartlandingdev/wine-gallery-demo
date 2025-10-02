@@ -14,31 +14,31 @@ const variants = {
     visible: { opacity: 1 }
   },
   fadeInUp: {
-    hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   },
   fadeInLeft: {
-    hidden: { opacity: 0, x: -60 },
-    visible: { opacity: 1, x: 0 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   },
   fadeInRight: {
-    hidden: { opacity: 0, x: 60 },
-    visible: { opacity: 1, x: 0 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   },
   scale: {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   },
   slideUp: {
-    hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   }
 };
 
 export const AnimatedSection = ({
   children,
   className = '',
-  delay = 0,
+  delay = 1,
   variant = 'fadeInUp'
 }: AnimatedSectionProps) => {
   return (
@@ -48,9 +48,9 @@ export const AnimatedSection = ({
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: 0.8,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 5,
+        delay: delay + 1.5,
+        ease: "easeInOut"
       }}
       variants={variants[variant]}
     >
@@ -68,13 +68,13 @@ export const AnimatedCard = ({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 4.5,
+        delay: delay + 1.2,
+        ease: "easeInOut"
       }}
       whileHover={{
         y: -8,
@@ -103,8 +103,8 @@ export const StaggeredContainer = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: staggerDelay,
-        delayChildren: 0.2
+        staggerChildren: staggerDelay + 1.5,
+        delayChildren: 2
       }
     }
   };
@@ -125,10 +125,9 @@ export const StaggeredContainer = ({
 // Staggered Item
 export const StaggeredItem = ({ children, className = '' }: { children: ReactNode; className?: string }) => {
   const item = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0 },
     visible: {
-      opacity: 1,
-      y: 0
+      opacity: 1
     }
   };
 
@@ -137,8 +136,8 @@ export const StaggeredItem = ({ children, className = '' }: { children: ReactNod
       className={className}
       variants={item}
       transition={{
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as any
+        duration: 4.5,
+        ease: "easeInOut" as any
       }}
     >
       {children}
@@ -175,12 +174,12 @@ export const ScaleOnScroll = ({ children, className = '' }: { children: ReactNod
   return (
     <motion.div
       className={className}
-      initial={{ scale: 0.9, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{
-        duration: 0.7,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 5,
+        ease: "easeInOut"
       }}
     >
       {children}

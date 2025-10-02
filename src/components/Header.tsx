@@ -121,21 +121,20 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
         className="absolute inset-0 z-0"
         style={{ y: yBg }}
       >
-        {/* Video Background - Premium */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.25]"
-          poster="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=2070"
-          style={{ filter: 'grayscale(20%) sepia(10%)' }}
-        >
-          <source src="/videos/wine-vineyard.mp4" type="video/mp4" />
-          <source src="https://cdn.coverr.co/videos/coverr-vineyard-rows-7359/1080p.mp4" type="video/mp4" />
-        </video>
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: 'url(https://media.istockphoto.com/id/1468165452/pt/foto/glass-of-red-wine-on-the-hills-of-tuscany-in-italy.jpg?s=612x612&w=0&k=20&c=VhNOMHIlub7cPyrVQGBT98NBPgxAbAnFAKOYWlDc-XA=)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity: 0.25,
+            filter: 'grayscale(20%) sepia(10%)'
+          }}
+        />
 
-        {/* Animated Background Pattern (fallback se vídeo não carregar) */}
+        {/* Animated Background Pattern */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -179,52 +178,31 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
       {/* Main Content with Advanced Parallax */}
       <motion.div
         className="relative z-50 text-center max-w-5xl mx-auto px-6 pt-32"
-        style={{
-          y: ySmooth,
-          opacity: opacity,
-          scale: scale
-        }}
       >
-        {/* Badge - 25 Anos */}
+        {/* Elegant Top Ornament */}
         <motion.div
-          className="inline-flex items-center gap-3 border px-6 py-3 mb-16 backdrop-blur-md"
-          style={{
-            borderColor: 'var(--gold)',
-            backgroundColor: 'rgba(245, 243, 239, 0.8)'
-          }}
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          whileHover={{ scale: 1.05, rotate: 1 }}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1">
-            <circle cx="12" cy="8" r="7"/>
-            <path d="M12 15l-3 9h6l-3-9z" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span className="text-sm font-light tracking-wider" style={{ color: 'var(--burgundy-deep)' }}>
-            25 Anos de Excelência
-          </span>
-        </motion.div>
-
-        {/* Thin Gold Line */}
-        <motion.div
-          className="flex items-center justify-center gap-6 mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex items-center justify-center gap-4 mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
         >
           <motion.div
-            className="h-px w-28 gold-line"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="h-px w-16"
+            style={{ background: 'linear-gradient(90deg, transparent, var(--gold), transparent)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
           />
-          <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>Premium Selection</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="0.5">
+            <circle cx="12" cy="12" r="8"/>
+            <circle cx="12" cy="12" r="4"/>
+          </svg>
           <motion.div
-            className="h-px w-28 gold-line"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="h-px w-16"
+            style={{ background: 'linear-gradient(90deg, transparent, var(--gold), transparent)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
           />
         </motion.div>
 
@@ -236,12 +214,45 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
             color: 'var(--burgundy-deep)',
             textShadow: '0 2px 40px rgba(59, 13, 17, 0.1)'
           }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 1.2 }}
         >
           {t.header.title}
         </motion.h1>
+
+        {/* Elegant Divider */}
+        <motion.div
+          className="flex items-center justify-center gap-6 mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 3 }}
+        >
+          <motion.div
+            className="h-px w-20"
+            style={{ background: 'var(--gold)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 3.3 }}
+          />
+          <motion.svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="var(--gold)"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <path d="M8 0 L10 6 L16 8 L10 10 L8 16 L6 10 L0 8 L6 6 Z"/>
+          </motion.svg>
+          <motion.div
+            className="h-px w-20"
+            style={{ background: 'var(--gold)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 3.3 }}
+          />
+        </motion.div>
 
         {/* Subtitle - Espaço Generoso */}
         <motion.p
@@ -251,79 +262,42 @@ export const Header = ({ onLearnMoreClick }: HeaderProps) => {
             color: 'var(--burgundy)',
             opacity: 0.85
           }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 0.85, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.7 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.85 }}
+          transition={{ duration: 2, delay: 2.5 }}
         >
           {t.header.subtitle}
         </motion.p>
 
-        {/* CTA - Glow Dourado Premium */}
-        <motion.button
-          onClick={onLearnMoreClick}
-          className="group relative border-2 px-16 py-5 text-sm font-light uppercase tracking-[0.3em] overflow-hidden backdrop-blur-sm mb-24"
-          style={{
-            borderColor: 'var(--gold)',
-            color: 'var(--burgundy-deep)',
-            backgroundColor: 'rgba(245, 243, 239, 0.8)',
-            boxShadow: '0 0 40px rgba(201, 166, 107, 0.3)',
-            zIndex: 100
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          whileHover={{
-            scale: 1.08,
-            boxShadow: '0 0 60px rgba(201, 166, 107, 0.6), 0 0 100px rgba(201, 166, 107, 0.3)'
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <span className="relative z-10 flex items-center gap-4 group-hover:text-white transition-colors duration-700">
-            {t.header.cta}
-            <motion.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity }}
-            >
-              →
-            </motion.span>
-          </span>
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              background: 'var(--gradient-gold)',
-              translateX: '-100%'
-            }}
-            whileHover={{ translateX: '0%' }}
-            transition={{ duration: 0.7 }}
-          />
-        </motion.button>
-
-        {/* Scroll Indicator Premium */}
+        {/* Bottom Elegant Ornament */}
         <motion.div
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
+          className="flex items-center justify-center gap-3 mt-12"
           initial={{ opacity: 0 }}
-          animate={{
-            y: [0, 12, 0],
-            opacity: 0.6
-          }}
-          transition={{
-            y: {
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            },
-            opacity: {
-              duration: 0.8,
-              delay: 1
-            }
-          }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 5 }}
         >
-          <span className="text-[9px] uppercase tracking-[0.3em] font-light" style={{ color: 'var(--gold)' }}>
-            Scroll
-          </span>
-          <svg width="20" height="40" viewBox="0 0 20 40" fill="none" stroke="var(--gold)" strokeWidth="1">
-            <path d="M10 2v36m0 0l-6-6m6 6l6-6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <motion.div
+            style={{
+              width: '32px',
+              height: '32px',
+              border: '1px solid var(--gold)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          >
+            <div
+              style={{
+                width: '16px',
+                height: '16px',
+                border: '1px solid var(--gold)',
+                borderRadius: '50%',
+              }}
+            />
+          </motion.div>
         </motion.div>
       </motion.div>
     </header>

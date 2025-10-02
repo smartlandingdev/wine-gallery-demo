@@ -45,6 +45,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Smooth transitions for all sections and backgrounds */
+section {
+  transition: background 1.5s ease-in-out, background-color 1.5s ease-in-out;
+}
+
+div {
+  transition: background 0.8s ease-in-out, background-color 0.8s ease-in-out;
+}
+
 /* Melhorar legibilidade de textos - Contraste Perfeito */
 section p:not(.subtitle):not([class*="text-"]):not(.text-gold),
 article p:not(.subtitle):not(.text-gold) {
