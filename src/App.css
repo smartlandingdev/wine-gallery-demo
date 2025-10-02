@@ -32,13 +32,13 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  background: var(--off-white);
+  background: var(--charcoal); /* fundo escuro sempre */
 }
 
 body {
-  background: #FFFCF8;
   background-image: var(--texture-linen);
-  color: #2D0E12;
+  background: var(--charcoal);
+  color: var(--off-white); /* texto claro */
   font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
