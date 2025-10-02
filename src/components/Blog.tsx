@@ -18,7 +18,7 @@ const ArrowIcon = () => (
 );
 
 export const Blog = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -33,7 +33,7 @@ export const Blog = () => {
       image: "/images/gallery/wine7.jpg",
       readTime: "5 min",
       date: "15 Mar 2024",
-      category: "Harmonização"
+      category: t.blog.categoryPairing
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ export const Blog = () => {
       image: "/images/gallery/wine8.jpg",
       readTime: "7 min",
       date: "12 Mar 2024",
-      category: "Armazenamento"
+      category: t.blog.categoryStorage
     },
     {
       id: 3,
@@ -51,7 +51,7 @@ export const Blog = () => {
       image: "/images/gallery/images.jpeg",
       readTime: "4 min",
       date: "08 Mar 2024",
-      category: "Regiões"
+      category: t.blog.categoryRegions
     },
   ];
 
@@ -176,7 +176,7 @@ export const Blog = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             />
             <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
-              Conhecimento
+              {t.blog.knowledgeLabel}
             </span>
             <motion.div
               className="h-px w-24 gold-line"
@@ -276,7 +276,7 @@ export const Blog = () => {
                     <div className="flex items-center gap-1.5">
                       <ClockIcon />
                       <span style={{ color: '#E8D5A8', fontSize: '11px', fontWeight: '600', letterSpacing: '0.05em' }}>
-                        {article.readTime} leitura
+                        {article.readTime} {t.blog.readTimeLabel}
                       </span>
                     </div>
                     <span style={{ color: '#E8D5A8', fontSize: '11px', fontWeight: '600' }}>
@@ -376,7 +376,7 @@ export const Blog = () => {
                   fontFamily: "'Inter', sans-serif"
                 }}
               >
-                Ver Todos os Artigos
+                {t.blog.viewAllArticles}
               </span>
               <motion.svg
                 width="16"

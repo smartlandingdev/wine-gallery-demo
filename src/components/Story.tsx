@@ -20,26 +20,26 @@ export const Story = () => {
   const timeline = [
     {
       year: 1998,
-      title: "Fundação",
-      description: "Início da jornada com foco em vinhos premium",
+      title: t.story.timeline.year1998Title,
+      description: t.story.timeline.year1998Desc,
       image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7X20XtjJMAe20q0Q1heZkznTNs1CbRNA6acvtSPJ_IKTigTU0LcUCt33uD-K9zdthxSt6HxiE3Mv3LNdVzfQ-xRr5z0G4Pzgth-cjV0uo2Y_IyF9WzTRlgQ9DsJM1QiqLEQQdo77N010V/w1200-h630-p-k-no-nu/rua+paracatu+1998.jpg"
     },
     {
       year: 2008,
-      title: "Expansão Internacional",
-      description: "Parcerias diretas com vinícolas europeias",
+      title: t.story.timeline.year2008Title,
+      description: t.story.timeline.year2008Desc,
       image: "https://midias.nosnochile.com.br/wp-content/uploads/2025/02/Imagen-08-01-25-a-las-10.42%E2%80%AFa.m-scaled-4.jpeg.webp"
     },
     {
       year: 2018,
-      title: "Reconhecimento",
-      description: "Prêmio de melhor importadora nacional",
+      title: t.story.timeline.year2018Title,
+      description: t.story.timeline.year2018Desc,
       image: "https://www.guatambuvinhos.com.br/wp-content/uploads/2021/10/1.png"
     },
     {
       year: 2023,
-      title: "Loja do Ano",
-      description: "Eleita a melhor loja de vinhos premium",
+      title: t.story.timeline.year2023Title,
+      description: t.story.timeline.year2023Desc,
       image: "https://midias.correiobraziliense.com.br/_midias/jpg/2023/08/23/1000x1000/1_01_premio_worlds_best_vineyards_melhores_vinicolas_do_mundo_instagram__duriguttiwinemakers-29108044.jpg?20230823142212?20230823142212"
     }
   ];
@@ -154,22 +154,22 @@ export const Story = () => {
             className="flex items-center justify-center gap-6 mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
           >
             <motion.div
               className="h-px w-24 gold-line"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             />
             <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
-              Nossa Trajetória
+              {t.story.ourJourney}
             </span>
             <motion.div
               className="h-px w-24 gold-line"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             />
           </motion.div>
 
@@ -181,7 +181,7 @@ export const Story = () => {
             }}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
           >
             {t.story.title}
           </motion.h2>
@@ -194,7 +194,7 @@ export const Story = () => {
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 0.8, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
             {t.story.paragraph1}
           </motion.p>
@@ -214,7 +214,7 @@ export const Story = () => {
               }}
               initial={{ opacity: 0, y: 60, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.7, delay: 0.5 + index * 0.15, ease: [0.34, 1.56, 0.64, 1] }}
+              transition={{ duration: 0.4, delay: 0.3 + index * 0.08, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{
                 y: -8
               }}
@@ -297,7 +297,7 @@ export const Story = () => {
             }}
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
-            transition={{ duration: 1.2, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           />
 
           {/* Timeline Items */}
@@ -308,7 +308,7 @@ export const Story = () => {
                 className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                 initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.9 + index * 0.2, ease: [0.34, 1.56, 0.64, 1] }}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
                 onMouseEnter={() => setHoveredYear(item.year)}
                 onMouseLeave={() => setHoveredYear(null)}
               >
@@ -410,13 +410,13 @@ export const Story = () => {
           className="text-center mt-32"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
         >
           <motion.div
             className="h-px w-32 mx-auto mb-8 gold-line"
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.9 }}
+            transition={{ duration: 0.4, delay: 1 }}
           />
           <motion.p
             className="text-lg font-light italic leading-loose max-w-2xl mx-auto"
@@ -426,7 +426,7 @@ export const Story = () => {
             }}
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 0.8 } : {}}
-            transition={{ duration: 0.8, delay: 2 }}
+            transition={{ duration: 0.4, delay: 1.1 }}
           >
             {t.story.paragraph2}
           </motion.p>

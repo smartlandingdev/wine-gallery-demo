@@ -9,15 +9,15 @@ const CheckIcon = () => (
 );
 
 export const Partners = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const partners = [
-    { id: 1, name: "Château Margaux", region: "Bordeaux, França" },
-    { id: 2, name: "Antinori", region: "Tuscany, Itália" },
-    { id: 3, name: "Opus One", region: "Napa Valley, EUA" },
-    { id: 4, name: "Dom Pérignon", region: "Champagne, França" },
-    { id: 5, name: "Caymus Vineyards", region: "Napa Valley, EUA" },
-    { id: 6, name: "Barolo", region: "Piedmont, Itália" }
+    { id: 1, name: "Château Margaux", region: language === 'pt' ? "Bordeaux, França" : "Bordeaux, France" },
+    { id: 2, name: "Antinori", region: language === 'pt' ? "Tuscany, Itália" : "Tuscany, Italy" },
+    { id: 3, name: "Opus One", region: "Napa Valley, USA" },
+    { id: 4, name: "Dom Pérignon", region: language === 'pt' ? "Champagne, França" : "Champagne, France" },
+    { id: 5, name: "Caymus Vineyards", region: "Napa Valley, USA" },
+    { id: 6, name: "Barolo", region: language === 'pt' ? "Piedmont, Itália" : "Piedmont, Italy" }
   ];
 
   const benefits = [
@@ -238,7 +238,7 @@ export const Partners = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
-                Parcerias Premium
+                {t.partners.premiumPartnerships}
               </span>
               <motion.div
                 className="h-px w-20 gold-line"

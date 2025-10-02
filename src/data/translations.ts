@@ -7,27 +7,45 @@ export const translations: Record<string, Translations> = {
       subtitle:
         "Discover the finest selection of wines from around the world, carefully curated for the discerning palate.",
       cta: "Discover Your Perfect Bottle",
+      nav: {
+        collection: "Collection",
+        story: "Story",
+        blog: "Blog",
+        contact: "Contact",
+      },
     },
     features: {
       title: "Why Choose Our Wines",
+      subtitle: "Each wine in our collection is carefully selected to offer a unique and memorable experience.",
+      label: "Differentials",
       premium: {
         title: "Premium Selection",
         description:
           "Handpicked wines from renowned vineyards, ensuring exceptional quality in every bottle.",
+        detail: "Wines selected from world-renowned wineries"
       },
       exclusive: {
         title: "Exclusive Imports",
         description:
           "Access to rare and limited-edition wines not available in regular stores.",
+        detail: "Direct imports and limited editions"
       },
       tasting: {
         title: "Expert Tasting Notes",
         description:
           "Detailed tasting profiles and pairing suggestions from certified sommeliers.",
+        detail: "Complete sensory analysis for each bottle"
       },
     },
     gallery: {
       title: "Our Wine Collection",
+      filterAll: "All",
+      collectionLabel: "Premium Collection",
+      limitedEdition: "Limited Edition",
+      france: "France",
+      italy: "Italy",
+      usa: "USA",
+      spain: "Spain",
     },
     story: {
       title: "Our Story",
@@ -39,6 +57,17 @@ export const translations: Record<string, Translations> = {
       wineSelection: "Wines in Collection",
       awardTitle: "Wine Store of the Year",
       awardYear: "2023",
+      ourJourney: "Our Journey",
+      timeline: {
+        year1998Title: "Foundation",
+        year1998Desc: "Beginning of the journey with focus on premium wines",
+        year2008Title: "International Expansion",
+        year2008Desc: "Direct partnerships with European wineries",
+        year2018Title: "Recognition",
+        year2018Desc: "Best national importer award",
+        year2023Title: "Store of the Year",
+        year2023Desc: "Elected the best premium wine store",
+      },
     },
     testimonials: {
       title: "What Our Customers Say",
@@ -57,6 +86,12 @@ export const translations: Record<string, Translations> = {
         "Enhance your wine knowledge with expert tips and pairing guides",
       category: "Wine Tips",
       readMore: "Read More",
+      knowledgeLabel: "Knowledge",
+      viewAllArticles: "View All Articles",
+      readTimeLabel: "read",
+      categoryPairing: "Pairing",
+      categoryStorage: "Storage",
+      categoryRegions: "Regions",
       article1: {
         title: "Perfect Wine Pairings for Holiday Dinners",
         excerpt:
@@ -113,6 +148,12 @@ export const translations: Record<string, Translations> = {
         title: "Wine Tips",
         description: "Expert advice and pairing recommendations",
       },
+      exclusiveNewsletter: "Exclusive Newsletter",
+      discoverWines: "I Want to Discover New Wines",
+      personalized: "Receive personalized recommendations, exclusive offers and premium content",
+      welcomeFamily: "Welcome to the Family!",
+      emailPlaceholder: "your@email.com",
+      subscribeButton: "Subscribe",
     },
     partners: {
       title: "Our Trusted Partners",
@@ -122,6 +163,7 @@ export const translations: Record<string, Translations> = {
       certified: "Certified Authentic",
       authentic: "Quality Guaranteed",
       quality: "Expert Curated",
+      premiumPartnerships: "Premium Partnerships",
     },
     video: {
       title: "Discover Our World",
@@ -189,27 +231,45 @@ export const translations: Record<string, Translations> = {
       subtitle:
         "Descubra a mais fina seleção de vinhos de todo o mundo, cuidadosamente escolhidos para o paladar exigente.",
       cta: "Descubra Sua Garrafa Perfeita",
+      nav: {
+        collection: "Coleção",
+        story: "História",
+        blog: "Blog",
+        contact: "Contato",
+      },
     },
     features: {
       title: "Por Que Escolher Nossos Vinhos",
+      subtitle: "Cada vinho em nossa coleção é cuidadosamente selecionado para oferecer uma experiência única e memorável.",
+      label: "Diferenciais",
       premium: {
         title: "Seleção Premium",
         description:
           "Vinhos selecionados a dedo de vinícolas renomadas, garantindo qualidade excepcional em cada garrafa.",
+        detail: "Vinhos selecionados de vinícolas renomadas mundialmente"
       },
       exclusive: {
         title: "Importações Exclusivas",
         description:
           "Acesso a vinhos raros e edições limitadas não disponíveis em lojas convencionais.",
+        detail: "Importações diretas e edições limitadas"
       },
       tasting: {
         title: "Notas de Degustação Especializadas",
         description:
           "Perfis detalhados de degustação e sugestões de harmonização de sommeliers certificados.",
+        detail: "Análise sensorial completa para cada garrafa"
       },
     },
     gallery: {
       title: "Nossa Coleção de Vinhos",
+      filterAll: "Todos",
+      collectionLabel: "Coleção Premium",
+      limitedEdition: "Edição Limitada",
+      france: "França",
+      italy: "Itália",
+      usa: "EUA",
+      spain: "Espanha",
     },
     story: {
       title: "Nossa História",
@@ -221,6 +281,17 @@ export const translations: Record<string, Translations> = {
       wineSelection: "Vinhos na Coleção",
       awardTitle: "Loja de Vinhos do Ano",
       awardYear: "2023",
+      ourJourney: "Nossa Trajetória",
+      timeline: {
+        year1998Title: "Fundação",
+        year1998Desc: "Início da jornada com foco em vinhos premium",
+        year2008Title: "Expansão Internacional",
+        year2008Desc: "Parcerias diretas com vinícolas europeias",
+        year2018Title: "Reconhecimento",
+        year2018Desc: "Prêmio de melhor importadora nacional",
+        year2023Title: "Loja do Ano",
+        year2023Desc: "Eleita a melhor loja de vinhos premium",
+      },
     },
     testimonials: {
       title: "O Que Nossos Clientes Dizem",
@@ -239,6 +310,12 @@ export const translations: Record<string, Translations> = {
         "Aprimore seu conhecimento sobre vinhos com dicas especializadas e guias de harmonização",
       category: "Dicas de Vinho",
       readMore: "Leia Mais",
+      knowledgeLabel: "Conhecimento",
+      viewAllArticles: "Ver Todos os Artigos",
+      readTimeLabel: "leitura",
+      categoryPairing: "Harmonização",
+      categoryStorage: "Armazenamento",
+      categoryRegions: "Regiões",
       article1: {
         title: "Harmonizações Perfeitas de Vinho para Ceias de Fim de Ano",
         excerpt:
@@ -297,6 +374,12 @@ export const translations: Record<string, Translations> = {
         title: "Dicas de Vinho",
         description: "Conselhos especializados e recomendações de harmonização",
       },
+      exclusiveNewsletter: "Newsletter Exclusiva",
+      discoverWines: "Quero Descobrir Novos Vinhos",
+      personalized: "Receba recomendações personalizadas, ofertas exclusivas e conteúdo premium",
+      welcomeFamily: "Bem-vindo à Família!",
+      emailPlaceholder: "seu@email.com",
+      subscribeButton: "Inscrever-se",
     },
     partners: {
       title: "Nossos Parceiros de Confiança",
@@ -306,6 +389,7 @@ export const translations: Record<string, Translations> = {
       certified: "Certificado Autêntico",
       authentic: "Qualidade Garantida",
       quality: "Curadoria Especializada",
+      premiumPartnerships: "Parcerias Premium",
     },
     video: {
       title: "Descubra Nosso Mundo",

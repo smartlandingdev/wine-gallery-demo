@@ -101,7 +101,7 @@ export const Newsletter = () => {
               transition={{ duration: 1, delay: 0.2 }}
             />
             <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
-              Newsletter Exclusiva
+              {t.newsletter.exclusiveNewsletter}
             </span>
             <motion.div
               className="h-px w-28 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"
@@ -122,7 +122,7 @@ export const Newsletter = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Quero Descobrir Novos Vinhos
+            {t.newsletter.discoverWines}
           </motion.h2>
 
           <motion.p
@@ -135,7 +135,7 @@ export const Newsletter = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.5 }}
           >
-            Receba recomendações personalizadas, ofertas exclusivas e conteúdo premium
+            {t.newsletter.personalized}
           </motion.p>
         </div>
 
@@ -151,7 +151,7 @@ export const Newsletter = () => {
               </svg>
             </div>
             <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Playfair Display', serif", color: 'white' }}>
-              Bem-vindo à Família!
+              {t.newsletter.welcomeFamily}
             </h3>
             <p className="text-sm font-light" style={{ color: 'var(--gold-light)' }}>
               {t.newsletter.success}
@@ -191,7 +191,7 @@ export const Newsletter = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
-                  placeholder="seu@email.com"
+                  placeholder={t.newsletter.emailPlaceholder}
                   required
                   className="flex-1 py-5 text-base font-light bg-transparent focus:outline-none"
                   style={{ color: 'var(--burgundy-deep)' }}
@@ -212,7 +212,7 @@ export const Newsletter = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <span className="relative z-10 flex items-center gap-3">
-                    Inscrever-se
+                    {t.newsletter.subscribeButton}
                     <WineGlassIcon />
                   </span>
                   <motion.div

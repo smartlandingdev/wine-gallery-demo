@@ -52,10 +52,15 @@ export const Header = () => {
 
           {/* Nav Links - SEMPRE DOURADO */}
           <div className="hidden md:flex items-center gap-12">
-            {['Coleção', 'História', 'Blog', 'Contato'].map((item, i) => (
+            {[
+              { label: t.header.nav.collection, href: '#gallery' },
+              { label: t.header.nav.story, href: '#story' },
+              { label: t.header.nav.blog, href: '#blog' },
+              { label: t.header.nav.contact, href: '#contact' }
+            ].map((item, i) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.href}
+                href={item.href}
                 className="text-sm font-light uppercase tracking-[0.15em] relative group nav-link-gold"
                 style={{
                   color: '#C9A66B !important',
@@ -70,7 +75,7 @@ export const Header = () => {
                   textShadow: '0 0 15px rgba(201, 166, 107, 0.6)'
                 }}
               >
-                {item}
+                {item.label}
                 <motion.div
                   className="absolute -bottom-1 left-0 h-px bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"
                   initial={{ width: '0%', left: '50%' }}

@@ -41,19 +41,19 @@ export const Features = () => {
       icon: <GrapeIcon />,
       title: t.features.premium.title,
       description: t.features.premium.description,
-      detail: "Vinhos selecionados de vinícolas renomadas mundialmente"
+      detail: t.features.premium.detail
     },
     {
       icon: <SparkleIcon />,
       title: t.features.exclusive.title,
       description: t.features.exclusive.description,
-      detail: "Importações diretas e edições limitadas"
+      detail: t.features.exclusive.detail
     },
     {
       icon: <WineGlassIcon />,
       title: t.features.tasting.title,
       description: t.features.tasting.description,
-      detail: "Análise sensorial completa para cada garrafa"
+      detail: t.features.tasting.detail
     },
   ];
 
@@ -155,7 +155,7 @@ export const Features = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
               />
               <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
-                Diferenciais
+                {t.features.label}
               </span>
             </motion.div>
 
@@ -179,7 +179,7 @@ export const Features = () => {
               animate={isInView ? { opacity: 0.8, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Cada vinho em nossa coleção é cuidadosamente selecionado para oferecer uma experiência única e memorável.
+              {t.features.subtitle}
             </motion.p>
           </motion.div>
 
