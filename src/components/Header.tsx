@@ -1,25 +1,14 @@
 import { useTranslation } from '../hooks/useTranslation';
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-interface HeaderProps {
-  onLearnMoreClick: () => void;
-}
-
-export const Header = ({ onLearnMoreClick }: HeaderProps) => {
+export const Header = () => {
   const { language, t, toggleLanguage } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
 
   // Parallax transforms - mais intenso e sofisticado
   const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '60%']);
-  const yContent = useTransform(scrollYProgress, [0, 1], ['0%', '120%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.85]);
-
-  // Smooth spring animation
-  const springConfig = { stiffness: 100, damping: 30, mass: 1 };
-  const ySmooth = useSpring(yContent, springConfig);
 
   // Navbar scroll detection
   useEffect(() => {
