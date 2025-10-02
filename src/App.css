@@ -11,8 +11,8 @@
   --gold-dark: #A68A5A;
   --gold-light: #E8D5A8;
   --gold-metallic: #D4AF37;
-  --off-white: #FFFCF8;
-  --warm-gray: #F8F5F0;
+  --off-white: #1a1612;
+  --warm-gray: #2d2825;
   --stone: #EBE7E0;
   --charcoal: #0C0C0C;
 
@@ -37,7 +37,7 @@ html {
 
 body {
   background-image: var(--texture-linen);
-  background: var(--charcoal);
+  background: var(--off-white);
   color: var(--off-white); /* texto claro */
   font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
   text-rendering: optimizeLegibility;
@@ -367,7 +367,8 @@ svg {
 
 /* Glass morphism utility */
 .glass-effect {
-  background: rgba(250, 247, 242, 0.7);
+  background: rgba(26, 22, 18, 0.7);
+  
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(201, 169, 97, 0.2);
@@ -723,18 +724,4 @@ svg {
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --off-white: #1a1612;
-    --warm-gray: #2d2825;
-  }
 
-  body {
-    background: var(--off-white);
-  }
-
-  .glass-effect {
-    background: rgba(26, 22, 18, 0.7);
-  }
-}
