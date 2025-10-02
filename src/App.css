@@ -38,7 +38,7 @@ html {
 body {
   background-image: var(--texture-linen);
   background: var(--off-white);
-  color: var(--off-white); /* texto claro */
+  color: var(--gold-dark); /* texto claro */
   font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -57,7 +57,7 @@ div {
 /* Melhorar legibilidade de textos - Contraste Perfeito */
 section p:not(.subtitle):not([class*="text-"]):not(.text-gold),
 article p:not(.subtitle):not(.text-gold) {
-  color: #1A0508 !important;
+  color: #A68A5A !important;
 }
 
 /* Títulos com DOURADO BRILHANTE */
@@ -93,7 +93,7 @@ section > div > p:first-of-type {
 .text-base:not(.subtitle),
 .text-sm,
 .text-xs {
-  color: #2D0E12 !important;
+  color: #A68A5A !important;
   text-shadow: none;
 }
 

@@ -207,7 +207,7 @@ export const Gallery = () => {
         {/* Scrollable Container - Full Width with Drag */}
         <div
           ref={scrollRef}
-          className="flex gap-2 overflow-x-auto scrollbar-hide py-8 px-4 cursor-grab active:cursor-grabbing select-none"
+          className="flex gap-6 overflow-x-auto scrollbar-hide py-8 px-12 cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: 'none' }}
             onMouseDown={(e) => {
               const slider = scrollRef.current;
@@ -244,97 +244,149 @@ export const Gallery = () => {
                   onMouseEnter={() => setHoveredId(wine.id)}
                   onMouseLeave={() => setHoveredId(null)}
                 >
-                  {/* Minimal Card with Border on Entire Card */}
+                  {/* Premium Wine Card - Elegant Frame */}
                   <motion.div
-                    className="relative cursor-pointer h-full p-6"
+                    className="relative cursor-pointer h-full overflow-hidden"
                     style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.03)'
+                      background: 'linear-gradient(180deg, rgba(42, 10, 13, 0.85) 0%, rgba(74, 20, 25, 0.9) 100%)',
+                      border: '1px solid rgba(201, 166, 107, 0.3)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                     }}
                     animate={{
-                      backgroundColor: hoveredId === wine.id
-                        ? 'rgba(255, 255, 255, 0.06)'
-                        : 'rgba(255, 255, 255, 0.03)'
+                      borderColor: hoveredId === wine.id ? 'rgba(201, 166, 107, 0.7)' : 'rgba(201, 166, 107, 0.3)',
+                      boxShadow: hoveredId === wine.id
+                        ? '0 12px 48px rgba(201, 166, 107, 0.25)'
+                        : '0 8px 32px rgba(0, 0, 0, 0.3)',
+                      y: hoveredId === wine.id ? -8 : 0
                     }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    {/* Border on Entire Card appears on hover - NO external glow */}
-                    <motion.div
-                      className="absolute inset-0 pointer-events-none"
-                      animate={{
-                        opacity: hoveredId === wine.id ? 1 : 0,
-                        boxShadow: hoveredId === wine.id
-                          ? 'inset 0 0 0 2px rgba(201, 166, 107, 0.8)'
-                          : 'inset 0 0 0 0px transparent'
+                    {/* Decorative Gold Corner Top Left */}
+                    <div
+                      className="absolute top-0 left-0 w-16 h-16"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(201, 166, 107, 0.2) 0%, transparent 100%)',
+                        borderRight: '1px solid rgba(201, 166, 107, 0.2)',
+                        borderBottom: '1px solid rgba(201, 166, 107, 0.2)'
                       }}
-                      transition={{ duration: 0.4 }}
                     />
 
-                    {/* Limited Edition Tag */}
+                    {/* Decorative Gold Corner Bottom Right */}
+                    <div
+                      className="absolute bottom-0 right-0 w-16 h-16"
+                      style={{
+                        background: 'linear-gradient(135deg, transparent 0%, rgba(201, 166, 107, 0.2) 100%)',
+                        borderLeft: '1px solid rgba(201, 166, 107, 0.2)',
+                        borderTop: '1px solid rgba(201, 166, 107, 0.2)'
+                      }}
+                    />
+
+                    {/* Limited Edition Badge */}
                     {wine.limited && (
                       <motion.div
-                        className="absolute top-3 right-3 px-3 py-1 text-[8px] uppercase tracking-[0.2em] font-light z-10"
+                        className="absolute top-4 right-4 px-4 py-2 text-[9px] uppercase tracking-[0.25em] font-light z-10"
                         style={{
-                          backgroundColor: 'rgba(201, 166, 107, 0.95)',
-                          color: 'white'
+                          background: 'linear-gradient(135deg, #C9A66B 0%, #D4AF37 100%)',
+                          color: '#2A0A0D',
+                          fontWeight: 600,
+                          boxShadow: '0 4px 12px rgba(201, 166, 107, 0.4)'
                         }}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
                       >
-                        Limited
+                        Edição Limitada
                       </motion.div>
                     )}
 
-                    {/* Wine Image with rustic filter and subtle background */}
-                    <div className="relative h-[350px] mb-4 overflow-hidden">
+                    {/* Wine Image with Premium Display */}
+                    <div className="relative h-[380px] flex items-center justify-center px-8 py-6">
+                      {/* Radial glow behind bottle */}
+                      <motion.div
+                        className="absolute inset-0"
+                        animate={{
+                          opacity: hoveredId === wine.id ? 0.4 : 0.2
+                        }}
+                        style={{
+                          background: 'radial-gradient(circle, rgba(201, 166, 107, 0.3) 0%, transparent 70%)'
+                        }}
+                        transition={{ duration: 0.5 }}
+                      />
+
                       <motion.img
                         src={wine.image}
                         alt={wine.name}
-                        className="w-full h-full object-contain pointer-events-none"
+                        className="relative z-10 w-full h-full object-contain pointer-events-none"
                         animate={{
-                          scale: hoveredId === wine.id ? 1.05 : 1
+                          scale: hoveredId === wine.id ? 1.08 : 1,
+                          y: hoveredId === wine.id ? -8 : 0
                         }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                         style={{
-                          filter: hoveredId === wine.id
-                            ? 'contrast(1.15) saturate(0.88) brightness(0.95) sepia(0.15) hue-rotate(-5deg) drop-shadow(0 20px 40px rgba(201, 166, 107, 0.3))'
-                            : 'contrast(1.12) saturate(0.85) brightness(0.92) sepia(0.2) hue-rotate(-5deg) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1))'
+                          filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4))'
                         }}
                       />
                     </div>
 
-                    {/* Minimal Description Below */}
-                    <div className="space-y-1">
+                    {/* Divider Line */}
+                    <div
+                      className="mx-6 h-px"
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.4), transparent)'
+                      }}
+                    />
+
+                    {/* Wine Information */}
+                    <div className="px-6 py-6 space-y-3">
                       <motion.h3
-                        className="text-base font-light tracking-wide"
+                        className="text-lg font-light tracking-wide"
                         style={{
                           fontFamily: "'Playfair Display', serif",
-                          color: 'var(--burgundy-deep)'
+                          color: '#E8D5A8'
                         }}
                       >
                         {wine.name}
                       </motion.h3>
 
                       <p
-                        className="text-xs font-light"
+                        className="text-xs font-light tracking-wider"
                         style={{
-                          color: 'var(--burgundy)',
-                          opacity: 0.7
+                          color: 'rgba(201, 166, 107, 0.8)',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.1em'
                         }}
                       >
-                        {wine.region}, {wine.country}
+                        {wine.region} • {wine.country}
                       </p>
 
-                      <motion.div
-                        className="text-lg font-light pt-1"
-                        style={{
-                          fontFamily: "'Playfair Display', serif",
-                          color: hoveredId === wine.id ? 'var(--gold)' : 'var(--burgundy-deep)'
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {wine.price}
-                      </motion.div>
+                      {/* Price with elegant styling */}
+                      <div className="flex items-center justify-between pt-2">
+                        <motion.div
+                          className="text-2xl font-light"
+                          style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: hoveredId === wine.id ? '#D4AF37' : '#C9A66B'
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {wine.price}
+                        </motion.div>
+
+                        {/* View Details Arrow */}
+                        <motion.div
+                          animate={{
+                            x: hoveredId === wine.id ? 4 : 0,
+                            opacity: hoveredId === wine.id ? 1 : 0.6
+                          }}
+                          transition={{ duration: 0.3 }}
+                          style={{
+                            color: '#C9A66B',
+                            fontSize: '20px'
+                          }}
+                        >
+                          →
+                        </motion.div>
+                      </div>
                     </div>
                   </motion.div>
                 </motion.div>

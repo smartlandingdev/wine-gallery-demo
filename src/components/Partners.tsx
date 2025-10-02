@@ -213,9 +213,9 @@ export const Partners = () => {
                   <CheckIcon />
                   <span
                     className="text-sm font-light uppercase tracking-[0.15em]"
-                    style={{ color: '#C9A66B' }}
+                    style={{ color: 'var(--gold-light)' }}
                   >
-                    {benefit.text}
+                    {benefit.text} 
                   </span>
                 </motion.div>
               ))}
@@ -280,7 +280,7 @@ export const Partners = () => {
             <motion.p
               className="text-base font-light leading-relaxed"
               style={{
-                color: 'var(--burgundy)',
+                color: 'var(--gold-light)',
                 opacity: 0.7
               }}
               initial={{ opacity: 0, y: 20 }}
