@@ -18,7 +18,7 @@ const ArrowIcon = () => (
 );
 
 export const Blog = () => {
-  const { t, language } = useTranslation();
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [hoveredId, setHoveredId] = useState<number | null>(null);
