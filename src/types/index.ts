@@ -5,24 +5,42 @@ export interface Translations {
     title: string;
     subtitle: string;
     cta: string;
+    nav: {
+      collection: string;
+      story: string;
+      blog: string;
+      contact: string;
+    };
   };
   features: {
     title: string;
+    subtitle: string;
+    label: string;
     premium: {
       title: string;
       description: string;
+      detail: string;
     };
     exclusive: {
       title: string;
       description: string;
+      detail: string;
     };
     tasting: {
       title: string;
       description: string;
+      detail: string;
     };
   };
   gallery: {
     title: string;
+    filterAll: string;
+    collectionLabel: string;
+    limitedEdition: string;
+    france: string;
+    italy: string;
+    usa: string;
+    spain: string;
   };
   story: {
     title: string;
@@ -32,6 +50,17 @@ export interface Translations {
     wineSelection: string;
     awardTitle: string;
     awardYear: string;
+    ourJourney: string;
+    timeline: {
+      year1998Title: string;
+      year1998Desc: string;
+      year2008Title: string;
+      year2008Desc: string;
+      year2018Title: string;
+      year2018Desc: string;
+      year2023Title: string;
+      year2023Desc: string;
+    };
   };
   testimonials: {
     title: string;
@@ -45,6 +74,12 @@ export interface Translations {
     subtitle: string;
     category: string;
     readMore: string;
+    knowledgeLabel: string;
+    viewAllArticles: string;
+    readTimeLabel: string;
+    categoryPairing: string;
+    categoryStorage: string;
+    categoryRegions: string;
     article1: {
       title: string;
       excerpt: string;
@@ -91,6 +126,12 @@ export interface Translations {
       title: string;
       description: string;
     };
+    exclusiveNewsletter: string;
+    discoverWines: string;
+    personalized: string;
+    welcomeFamily: string;
+    emailPlaceholder: string;
+    subscribeButton: string;
   };
   partners: {
     title: string;
@@ -99,6 +140,7 @@ export interface Translations {
     certified: string;
     authentic: string;
     quality: string;
+    premiumPartnerships: string;
   };
   video: {
     title: string;
