@@ -73,7 +73,7 @@ export const Story = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="story" className="py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
+    <section ref={sectionRef} id="story" className="py-16 md:py-24 lg:py-32 relative overflow-hidden" style={{ background: 'var(--off-white)' }}>
       {/* Gold Shimmer Wave */}
       <motion.div
         className="absolute inset-0 opacity-[0.14]"
@@ -111,7 +111,7 @@ export const Story = () => {
 
       {/* Floating Orb - Gold */}
       <motion.div
-        className="absolute top-[20%] left-[10%] w-[450px] h-[450px] rounded-full opacity-[0.11]"
+        className="absolute top-[20%] left-[10%] w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[450px] lg:h-[450px] rounded-full opacity-[0.11]"
         style={{
           background: 'radial-gradient(circle, rgba(201, 166, 107, 0.7) 0%, rgba(212, 175, 55, 0.4) 40%, transparent 70%)',
           filter: 'blur(45px)'
@@ -130,7 +130,7 @@ export const Story = () => {
 
       {/* Floating Orb - Warm Bronze */}
       <motion.div
-        className="absolute bottom-[10%] right-[15%] w-[550px] h-[550px] rounded-full opacity-[0.1]"
+        className="absolute bottom-[10%] right-[15%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[550px] lg:h-[550px] rounded-full opacity-[0.1]"
         style={{
           background: 'radial-gradient(circle, rgba(160, 82, 45, 0.6) 0%, rgba(139, 69, 19, 0.3) 40%, transparent 70%)',
           filter: 'blur(50px)'
@@ -147,26 +147,26 @@ export const Story = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Section Title */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-12 md:mb-16 lg:mb-24">
           <motion.div
-            className="flex items-center justify-center gap-6 mb-8"
+            className="flex items-center justify-center gap-3 md:gap-6 mb-6 md:mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4 }}
           >
             <motion.div
-              className="h-px w-24 gold-line"
+              className="h-px w-12 md:w-24 gold-line"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.1 }}
             />
-            <span className="text-[10px] uppercase tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
+            <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.35em] font-light" style={{ color: 'var(--gold)' }}>
               {t.story.ourJourney}
             </span>
             <motion.div
-              className="h-px w-24 gold-line"
+              className="h-px w-12 md:w-24 gold-line"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.1 }}
@@ -174,7 +174,7 @@ export const Story = () => {
           </motion.div>
 
           <motion.h2
-            className="text-5xl md:text-7xl font-light leading-tight mb-6"
+            className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight mb-4 md:mb-6"
             style={{
               fontFamily: "'Playfair Display', serif",
               color: 'var(--burgundy-deep)'
@@ -187,7 +187,7 @@ export const Story = () => {
           </motion.h2>
 
           <motion.p
-            className="text-lg font-light leading-loose max-w-3xl mx-auto"
+            className="text-base md:text-lg font-light leading-relaxed md:leading-loose max-w-3xl mx-auto px-4"
             style={{
               color: 'var(--burgundy)',
               opacity: 0.8
@@ -201,11 +201,11 @@ export const Story = () => {
         </div>
 
         {/* Statistics Highlight with Premium Animations */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-20 lg:mb-32">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="relative border-2 p-12 text-center group cursor-pointer overflow-hidden"
+              className="relative border-2 p-6 md:p-10 lg:p-12 text-center group cursor-pointer overflow-hidden"
               style={{
                 borderColor: index === hoveredYear ? '#DC143C' : '#8B0000',
                 background: index === hoveredYear
@@ -223,7 +223,7 @@ export const Story = () => {
             >
               {/* Icon with Rotation on Hover */}
               <motion.div
-                className="flex justify-center mb-6"
+                className="flex justify-center mb-4 md:mb-6"
                 animate={{
                   scale: hoveredYear === index ? 1.15 : 1,
                   rotate: hoveredYear === index ? 12 : 0
@@ -235,7 +235,7 @@ export const Story = () => {
 
               {/* Value - Gold Colors */}
               <motion.div
-                className="text-6xl font-light mb-4"
+                className="text-4xl md:text-5xl lg:text-6xl font-light mb-3 md:mb-4"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   color: hoveredYear === index ? '#FFD700' : '#C9A66B',
@@ -251,7 +251,7 @@ export const Story = () => {
 
               {/* Label - Gold */}
               <div
-                className="text-sm uppercase tracking-[0.2em] font-light"
+                className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light"
                 style={{
                   color: hoveredYear === index ? '#FFFFFF' : '#E8D5A8'
                 }}
@@ -301,11 +301,11 @@ export const Story = () => {
           />
 
           {/* Timeline Items */}
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-16 lg:space-y-24">
             {timeline.map((item, index) => (
               <motion.div
                 key={item.year}
-                className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+                className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center"
                 initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
@@ -313,9 +313,9 @@ export const Story = () => {
                 onMouseLeave={() => setHoveredYear(null)}
               >
                 {/* Content - alternates left/right - TUDO DOURADO */}
-                <div className={`${index % 2 === 0 ? 'lg:text-right lg:pr-16' : 'lg:col-start-2 lg:pl-16'}`}>
+                <div className={`${index % 2 === 0 ? 'lg:text-right lg:pr-12 xl:pr-16' : 'lg:col-start-2 lg:pl-12 xl:pl-16'}`}>
                   <motion.div
-                    className="text-7xl font-light mb-4"
+                    className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-3 md:mb-4"
                     style={{
                       fontFamily: "'Playfair Display', serif",
                       color: hoveredYear === item.year ? '#FFD700' : '#C9A66B',
@@ -331,7 +331,7 @@ export const Story = () => {
                   </motion.div>
 
                   <motion.h3
-                    className="text-3xl font-light mb-4 tracking-wide"
+                    className="text-xl md:text-2xl lg:text-3xl font-light mb-3 md:mb-4 tracking-wide"
                     style={{
                       fontFamily: "'Playfair Display', serif",
                       color: '#C9A66B'
@@ -346,7 +346,7 @@ export const Story = () => {
                   </motion.h3>
 
                   <p
-                    className="text-base font-light leading-loose"
+                    className="text-sm md:text-base font-light leading-relaxed md:leading-loose"
                     style={{
                       color: '#E8D5A8'
                     }}
@@ -367,7 +367,7 @@ export const Story = () => {
                     <motion.img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-[400px] object-cover"
+                      className="w-full h-[250px] md:h-[300px] lg:h-[400px] object-cover"
                       animate={{
                         filter: hoveredYear === item.year ? 'grayscale(0%) sepia(10%)' : 'grayscale(100%)',
                         scale: hoveredYear === item.year ? 1.08 : 1
@@ -407,19 +407,19 @@ export const Story = () => {
 
         {/* Closing Statement */}
         <motion.div
-          className="text-center mt-32"
+          className="text-center mt-12 md:mt-20 lg:mt-32"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.9 }}
         >
           <motion.div
-            className="h-px w-32 mx-auto mb-8 gold-line"
+            className="h-px w-20 md:w-32 mx-auto mb-6 md:mb-8 gold-line"
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.4, delay: 1 }}
           />
           <motion.p
-            className="text-lg font-light italic leading-loose max-w-2xl mx-auto"
+            className="text-base md:text-lg font-light italic leading-relaxed md:leading-loose max-w-2xl mx-auto px-4"
             style={{
               color: 'var(--burgundy)',
               opacity: 0.8

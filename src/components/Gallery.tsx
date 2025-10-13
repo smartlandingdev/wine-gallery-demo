@@ -103,7 +103,7 @@ export const Gallery = () => {
     : wines.filter(wine => wine.country === selectedCountry);
 
   return (
-    <section ref={sectionRef} id="gallery" className="py-32 relative overflow-hidden" style={{ background: 'var(--warm-gray)' }}>
+    <section ref={sectionRef} id="gallery" className="py-16 md:py-24 lg:py-32 relative overflow-hidden" style={{ background: 'var(--warm-gray)' }}>
       {/* Paper Texture Background - More Visible */}
       <div
         className="absolute inset-0 opacity-[0.15]"
@@ -134,7 +134,7 @@ export const Gallery = () => {
 
       {/* Floating Gold Accent */}
       <motion.div
-        className="absolute top-20 right-20 w-[400px] h-[400px] rounded-full blur-3xl opacity-20"
+        className="absolute top-10 md:top-20 right-10 md:right-20 w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] rounded-full blur-3xl opacity-20"
         style={{ background: 'var(--gradient-glow)' }}
         animate={{
           scale: [1, 1.2, 1],
@@ -147,28 +147,28 @@ export const Gallery = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Section Title - Aligned with other sections */}
-        <div className="mb-20">
+        <div className="mb-12 md:mb-16 lg:mb-20">
           <motion.div
-            className="flex items-center gap-6 mb-8"
+            className="flex items-center gap-3 md:gap-6 mb-6 md:mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="h-px w-20 gold-line"
+              className="h-px w-12 md:w-20 gold-line"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
-            <span className="text-[10px] uppercase tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
+            <span className="text-[8px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-light" style={{ color: 'var(--gold)' }}>
               {t.gallery.collectionLabel}
             </span>
           </motion.div>
 
           <motion.h2
-            className="text-5xl md:text-7xl font-light leading-tight mb-16"
+            className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight mb-8 md:mb-12 lg:mb-16"
             style={{
               fontFamily: "'Playfair Display', serif",
               color: 'var(--burgundy-deep)'
@@ -182,7 +182,7 @@ export const Gallery = () => {
 
           {/* Elegant Filters - More Visible */}
           <motion.div
-            className="flex items-center gap-3 flex-wrap"
+            className="flex items-center gap-2 md:gap-3 flex-wrap"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -191,7 +191,7 @@ export const Gallery = () => {
               <motion.button
                 key={country}
                 onClick={() => setSelectedCountry(country)}
-                className="relative px-6 py-2.5 text-xs font-medium uppercase tracking-[0.2em]"
+                className="relative px-3 py-2 md:px-6 md:py-2.5 text-[10px] md:text-xs font-medium uppercase tracking-[0.15em] md:tracking-[0.2em]"
                 style={{
                   color: selectedCountry === country ? 'var(--burgundy-deep)' : 'var(--burgundy)',
                   backgroundColor: selectedCountry === country ? 'rgba(201, 166, 107, 0.25)' : 'rgba(201, 166, 107, 0.08)',
@@ -218,7 +218,7 @@ export const Gallery = () => {
         {/* Scrollable Container - Full Width with Drag */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide py-8 px-12 cursor-grab active:cursor-grabbing select-none"
+          className="flex gap-3 md:gap-4 lg:gap-6 overflow-x-auto scrollbar-hide py-6 md:py-8 px-4 md:px-8 lg:px-12 cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: 'none' }}
             onMouseDown={(e) => {
               const slider = scrollRef.current;
@@ -246,8 +246,7 @@ export const Gallery = () => {
               {filteredWines.map((wine, index) => (
                 <motion.div
                   key={wine.id}
-                  className="flex-shrink-0"
-                  style={{ width: 'calc(100vw / 4.5)' }}
+                  className="flex-shrink-0 wine-card-mobile"
                   initial={{ opacity: 0, y: 60, scale: 0.9 }}
                   animate={cardsInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -278,7 +277,7 @@ export const Gallery = () => {
                   >
                     {/* Decorative Gold Corner Top Left */}
                     <div
-                      className="absolute top-0 left-0 w-16 h-16"
+                      className="absolute top-0 left-0 w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16"
                       style={{
                         background: 'linear-gradient(135deg, rgba(201, 166, 107, 0.2) 0%, transparent 100%)',
                         borderRight: '1px solid rgba(201, 166, 107, 0.2)',
@@ -288,7 +287,7 @@ export const Gallery = () => {
 
                     {/* Decorative Gold Corner Bottom Right */}
                     <div
-                      className="absolute bottom-0 right-0 w-16 h-16"
+                      className="absolute bottom-0 right-0 w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16"
                       style={{
                         background: 'linear-gradient(135deg, transparent 0%, rgba(201, 166, 107, 0.2) 100%)',
                         borderLeft: '1px solid rgba(201, 166, 107, 0.2)',
@@ -299,7 +298,7 @@ export const Gallery = () => {
                     {/* Limited Edition Badge */}
                     {wine.limited && (
                       <motion.div
-                        className="absolute top-4 right-4 px-4 py-2 text-[9px] uppercase tracking-[0.25em] font-light z-10"
+                        className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-1 md:px-4 md:py-2 text-[7px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.25em] font-light z-10"
                         style={{
                           background: 'linear-gradient(135deg, #C9A66B 0%, #D4AF37 100%)',
                           color: '#2A0A0D',
@@ -315,7 +314,7 @@ export const Gallery = () => {
                     )}
 
                     {/* Wine Image with Premium Display */}
-                    <div className="relative h-[380px] flex items-center justify-center px-8 py-6">
+                    <div className="relative h-[280px] md:h-[340px] lg:h-[380px] flex items-center justify-center px-4 md:px-6 lg:px-8 py-4 md:py-6">
                       {/* Radial glow behind bottle */}
                       <motion.div
                         className="absolute inset-0"
@@ -345,16 +344,16 @@ export const Gallery = () => {
 
                     {/* Divider Line */}
                     <div
-                      className="mx-6 h-px"
+                      className="mx-4 md:mx-6 h-px"
                       style={{
                         background: 'linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.4), transparent)'
                       }}
                     />
 
                     {/* Wine Information */}
-                    <div className="px-6 py-6 space-y-3">
+                    <div className="px-4 md:px-6 py-4 md:py-6 space-y-2 md:space-y-3">
                       <motion.h3
-                        className="text-lg font-light tracking-wide"
+                        className="text-base md:text-lg font-light tracking-wide"
                         style={{
                           fontFamily: "'Playfair Display', serif",
                           color: '#E8D5A8'
@@ -364,7 +363,7 @@ export const Gallery = () => {
                       </motion.h3>
 
                       <p
-                        className="text-xs font-light tracking-wider"
+                        className="text-[10px] md:text-xs font-light tracking-wider"
                         style={{
                           color: 'rgba(201, 166, 107, 0.8)',
                           textTransform: 'uppercase',
@@ -375,9 +374,9 @@ export const Gallery = () => {
                       </p>
 
                       {/* Price with elegant styling */}
-                      <div className="flex items-center justify-between pt-2">
+                      <div className="flex items-center justify-between pt-1 md:pt-2">
                         <motion.div
-                          className="text-2xl font-light"
+                          className="text-xl md:text-2xl font-light"
                           style={{
                             fontFamily: "'Playfair Display', serif",
                             color: hoveredId === wine.id ? '#D4AF37' : '#C9A66B'
@@ -419,6 +418,36 @@ export const Gallery = () => {
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        /* Mobile-first card width */
+        .wine-card-mobile {
+          width: 85vw;
+        }
+
+        /* Tablet and up */
+        @media (min-width: 640px) {
+          .wine-card-mobile {
+            width: 70vw;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .wine-card-mobile {
+            width: 50vw;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .wine-card-mobile {
+            width: calc(100vw / 3.5);
+          }
+        }
+
+        @media (min-width: 1280px) {
+          .wine-card-mobile {
+            width: calc(100vw / 4.5);
+          }
         }
       `}</style>
     </section>
