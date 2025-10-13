@@ -33,3 +33,22 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* Disable ALL animations on mobile for better performance */
+@media (max-width: 768px) {
+  /* Force disable all animations and transitions */
+  *,
+  *::before,
+  *::after,
+  [data-projection-id] {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  /* Keep smooth scrolling but remove other animations */
+  html {
+    scroll-behavior: smooth;
+  }
+}

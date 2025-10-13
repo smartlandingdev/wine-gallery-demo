@@ -640,35 +640,95 @@ svg {
 
 /* Mobile */
 @media (max-width: 768px) {
+  /* DISABLE ALL ANIMATIONS ON MOBILE - PERFORMANCE BOOST */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+
+  /* Disable Framer Motion animations - Force static */
+  [data-projection-id],
+  [data-framer-motion],
+  .motion-div,
+  motion > * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+
   /* Disable heavy animations on mobile */
   .hover-lift,
   .magnetic-hover,
   .liquid-hover,
-  .glow-hover {
-    transition: none;
+  .glow-hover,
+  .card-hover,
+  .scale-hover {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
   }
 
-  .hover-lift:hover {
-    transform: none;
-    box-shadow: none;
+  .hover-lift:hover,
+  .card-hover:hover,
+  .scale-hover:hover {
+    transform: none !important;
+    box-shadow: none !important;
   }
 
   .glow-hover:hover {
-    box-shadow: none;
-    filter: none;
+    box-shadow: none !important;
+    filter: none !important;
   }
 
   /* Simplify parallax for better mobile performance */
-  .animate-parallax-slide {
-    animation: none;
-  }
-
-  /* Faster animations */
+  .animate-parallax-slide,
   .animate-fade-in,
   .animate-fade-in-up,
   .animate-fade-in-left,
-  .animate-fade-in-right {
-    animation-duration: 0.6s;
+  .animate-fade-in-right,
+  .animate-float {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Force static positioning for floating elements */
+  section > div[class*="absolute"],
+  section > div.absolute {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Hide decorative floating backgrounds on mobile for performance */
+  section > .absolute.opacity-\\[0\\.14\\],
+  section > .absolute.opacity-\\[0\\.12\\],
+  section > .absolute.opacity-\\[0\\.11\\],
+  section > .absolute.opacity-\\[0\\.1\\],
+  section > .absolute.opacity-20,
+  section > .absolute[class*="blur"],
+  section > .absolute[class*="rounded-full"] {
+    display: none !important;
+  }
+
+  /* Remove all inline motion styles */
+  div[style*="transform"],
+  div[style*="opacity"],
+  div[style*="scale"],
+  img[style*="transform"],
+  img[style*="filter"] {
+    transform: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 
   /* Reduce spacing */
@@ -701,6 +761,12 @@ svg {
 
   .heading-luxury {
     font-size: clamp(1.5rem, 10vw, 2rem);
+  }
+
+  /* Extra ensure no animations on very small screens */
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
